@@ -4,7 +4,6 @@ import { AppShowcase } from '@/components/sections/AppShowcase'
 import { Features } from '@/components/sections/Features'
 import { NeuroEngine } from '@/components/sections/NeuroEngine'
 import { FAQ } from '@/components/sections/FAQ'
-import { Support } from '@/components/sections/Support'
 import { FinalCTA } from '@/components/sections/FinalCTA'
 import { Footer } from '@/components/layout/Footer'
 
@@ -19,7 +18,6 @@ export function Home() {
                 <Features />
                 <NeuroEngine />
                 <FAQ />
-                <Support />
                 <FinalCTA />
             </main>
 

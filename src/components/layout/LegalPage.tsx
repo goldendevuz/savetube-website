@@ -9,7 +9,7 @@ export interface LegalSection {
 }
 
 export const AFFILIATION_NOTICE =
-    'Flow is not affiliated with, endorsed or sponsored by YouTube or Google. YouTube and YouTube Music are trademarks of Google LLC.'
+    'SaveTube is not affiliated with, endorsed or sponsored by YouTube or Google. YouTube and YouTube Music are trademarks of Google LLC.'
 
 export function LegalPage({ kicker, title, accent, updated, intro, sections }: {
     kicker: string

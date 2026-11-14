@@ -17,12 +17,12 @@ const groups: FeatureGroup[] = [
         id: 'watch',
         label: 'Watch',
         lead: 'Playback without the parts you skip anyway.',
-        screen: { src: '/screenshots/VideoPlayer.webp', alt: 'The Flow video player', caption: 'Video player', width: 575, height: 1280 },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: 'The SaveTube video player', caption: 'Video player', width: 575, height: 1280 },
         items: [
             { title: 'SponsorBlock & DeArrow', description: 'Skips sponsors, intros and outros, and swaps clickbait titles and thumbnails for community ones.' },
             { title: 'Return YouTube Dislike', description: 'See the real rating, with community-sourced dislike counts.' },
             { title: 'Background Play & PiP', description: 'Keep listening with the screen off, or float the video over other apps.' },
-            { title: 'Floating Mini Player', description: 'Shrink the video into a floating window and keep browsing Flow.' },
+            { title: 'Floating Mini Player', description: 'Shrink the video into a floating window and keep browsing SaveTube.' },
             { title: 'Downloads', description: 'Save videos for offline viewing, including VP9 and AV1.' },
             { title: 'Chapters & Speed', description: 'Jump between chapters, and play anywhere from 0.25× to 2×.' },
             { title: 'Casting', description: 'Send what you\'re watching to a Chromecast or a DLNA TV.' },
@@ -38,7 +38,7 @@ const groups: FeatureGroup[] = [
         id: 'listen',
         label: 'Listen',
         lead: 'A music app that happens to live inside a video app.',
-        screen: { src: '/screenshots/MusicPlayer.webp', alt: 'The Flow music player', caption: 'Music player', width: 575, height: 1280 },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: 'The SaveTube music player', caption: 'Music player', width: 575, height: 1280 },
         items: [
             { title: 'Music Player', description: 'Album art, a queue you can reorder, shuffle and repeat.' },
             { title: 'Synchronized Lyrics', description: 'Lyrics that scroll with the song as it plays.' },
@@ -55,27 +55,27 @@ const groups: FeatureGroup[] = [
         id: 'yours',
         label: 'Yours',
         lead: 'No account, no tracking, and it looks the way you want.',
-        screen: { src: '/screenshots/Library.webp', alt: 'The Flow library', caption: 'Library', width: 575, height: 1280 },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/Library.webp`, alt: 'The SaveTube library', caption: 'Library', width: 575, height: 1280 },
         items: [
             { title: 'No Account, No Tracking', description: 'No Google sign-in, no ads, no analytics. Your data stays on your phone.' },
             { title: 'Import & Export', description: 'Bring subscriptions and history from NewPipe, and export everything anytime.' },
             { title: '27 Themes', description: 'Catppuccin, Dracula, Tokyo Night and more, plus Material You colors from your wallpaper.' },
             { title: 'Custom Themes', description: 'Build your own palette when none of the 27 fits.' },
-            { title: 'Flow Recap', description: 'Your time per day and month, top channels and artists, told as a story.' },
+            { title: 'SaveTube Recap', description: 'Your time per day and month, top channels and artists, told as a story.' },
             { title: 'Verify Every Build', description: 'Check the APK\'s signing fingerprint with AppVerifier before you install.' },
         ],
     },
     {
         id: 'everywhere',
         label: 'Everywhere',
-        lead: 'The same Flow on your TV, your home screen, your computer and your browser.',
-        screen: { src: '/screenshots/desktop/Home.webp', alt: 'The Flow desktop app', caption: 'Desktop beta', width: 1915, height: 1020, desktop: true },
+        lead: 'The same SaveTube on your TV, your home screen, your computer and your browser.',
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/desktop/Home.webp`, alt: 'The SaveTube desktop app', caption: 'Desktop beta', width: 1915, height: 1020, desktop: true },
         items: [
             { title: 'Android TV', description: 'A TV interface built for the remote, with the same private feed.' },
             { title: 'Device Sync', description: 'Move your library, history and profile between your devices over local Wi-Fi, paired with a QR code.' },
             { title: 'Home-Screen Widgets', description: 'Now Playing controls, and quick actions for search, downloads, history and recognition.' },
-            { title: 'Desktop Beta', description: 'Windows, macOS and Linux, written in Rust on Tauri 2. Syncs with Flow on your phone.' },
-            { title: 'Browser Extension', description: 'Watch in Flow and Download buttons on YouTube and YouTube Music, in Chromium browsers and Firefox.' },
+            { title: 'Desktop Beta', description: 'Windows, macOS and Linux, written in Rust on Tauri 2. Syncs with SaveTube on your phone.' },
+            { title: 'Browser Extension', description: 'Watch in SaveTube and Download buttons on YouTube and YouTube Music, in Chromium browsers and Firefox.' },
         ],
     },
 ]
@@ -107,7 +107,7 @@ export function Features() {
                             Everything on your terms.
                         </h2>
                         <p className="text-lg text-text-secondary leading-relaxed">
-                            Watching, listening, discovering: every part of Flow is built around
+                            Watching, listening, discovering: every part of SaveTube is built around
                             privacy, control, and playback that stays out of your way.
                         </p>
                     </div>

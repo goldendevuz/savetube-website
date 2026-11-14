@@ -5,11 +5,11 @@ import App from './App'
 import './styles/fonts.css'
 import './styles/globals.css'
 
-try { sessionStorage.removeItem('flow-asset-retry') } catch { /* storage unavailable */ }
+try { sessionStorage.removeItem('savetube-asset-retry') } catch { /* storage unavailable */ }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
             <App />
         </BrowserRouter>
     </React.StrictMode>,

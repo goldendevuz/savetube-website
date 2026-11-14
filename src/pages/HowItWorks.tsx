@@ -6,7 +6,7 @@ import { FadeIn } from '@/components/ui/TextReveal'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
-const CODE_BASE = 'https://github.com/Flow-Tube/Flow/blob/main/app/src/main/java/io/github/aedev/flow/'
+const CODE_BASE = 'https://github.com/goldendevuz/savetube-android/blob/main/app/src/main/java/io/github/aedev/flow/'
 
 interface Tip {
     x: number
@@ -285,7 +285,7 @@ function DecayChart() {
 
 const feedCases = {
     established: { label: 'Subscriptions + history', subs: 16, related: 10, discovery: 10 },
-    new: { label: 'New to Flow', subs: 14, related: 12, discovery: 10 },
+    new: { label: 'New to SaveTube', subs: 14, related: 12, discovery: 10 },
     noSubs: { label: 'No subscriptions', subs: 0, related: 14, discovery: 18 },
 }
 
@@ -382,7 +382,7 @@ function BoredomSlider() {
 
 const personas = [
     { emoji: '🌱', name: 'The Initiate', text: 'Just getting started. Your profile is still forming.', rule: 'Under 15 interactions' },
-    { emoji: '🎧', name: 'The Audiophile', text: 'You use Flow mostly for Music. The vibe is everything.', rule: 'Music is over 40% of your topics' },
+    { emoji: '🎧', name: 'The Audiophile', text: 'You use SaveTube mostly for Music. The vibe is everything.', rule: 'Music is over 40% of your topics' },
     { emoji: '🔴', name: 'The Livewire', text: 'You love the raw energy of Livestreams and premieres.', rule: 'Mostly live and premieres' },
     { emoji: '🦉', name: 'The Night Owl', text: 'You thrive in the dark. Most watching happens after midnight.', rule: 'Nights over 1.5× your mornings' },
     { emoji: '🍿', name: 'The Binger', text: 'Once you start, you can\'t stop. Massive content waves.', rule: '500+ interactions, fast-paced' },
@@ -417,11 +417,11 @@ export function HowItWorks() {
                     <FadeIn>
                         <p className="kicker mb-5">How it works</p>
                         <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.035em] leading-[0.98] mb-6">
-                            FlowNeuro,{' '}
+                            SaveTube Neuro,{' '}
                             <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">in detail.</span>
                         </h1>
                         <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl">
-                            FlowNeuro is the recommendation engine inside Flow. It isn't an AI model: it keeps a list of topics
+                            SaveTube Neuro is the recommendation engine inside SaveTube. It isn't an AI model: it keeps a list of topics
                             and weights in one file on your phone and does plain math on them.
                         </p>
                     </FadeIn>
@@ -508,7 +508,7 @@ export function HowItWorks() {
                             id="feed"
                             title="Where your feed comes from"
                             text={<>
-                                <p>Home mixes three sources: your subscriptions, videos related to ones you finished or liked, and searches Flow runs for you from your interests. Up to two uploads from the last 72 hours are pinned at the top.</p>
+                                <p>Home mixes three sources: your subscriptions, videos related to ones you finished or liked, and searches SaveTube runs for you from your interests. Up to two uploads from the last 72 hours are pinned at the top.</p>
                                 <p>Each refresh runs up to 12 searches, always including one or two that explore topics next to yours. There's no trending filler: if nothing fits, the feed stays short.</p>
                             </>}
                             files={['ui/screens/home/HomeFeedMixer.kt', 'ui/screens/home/HomeFeedAssembly.kt', 'data/recommendation/NeuroDiscovery.kt']}
@@ -589,7 +589,7 @@ export function HowItWorks() {
                                     <ul className="space-y-2 text-sm text-text-secondary">
                                         <li>Boost a topic, or block topics and channels</li>
                                         <li>Unblock anything under Hidden from you</li>
-                                        <li>Long-press the Flow logo to pause learning. It turns back on after 4 hours by default.</li>
+                                        <li>Long-press the SaveTube logo to pause learning. It turns back on after 4 hours by default.</li>
                                         <li>Export or import your profile as a JSON file</li>
                                         <li>Reset video or music learning to zero. Your recap stays.</li>
                                     </ul>
@@ -657,7 +657,7 @@ export function HowItWorks() {
                                 </p>
                             </div>
                             <Button
-                                href="https://github.com/Flow-Tube/Flow/tree/main/app/src/main/java/io/github/aedev/flow/data/recommendation"
+                                href="https://github.com/goldendevuz/savetube-android/tree/main/app/src/main/java/io/github/aedev/flow/data/recommendation"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 variant="primary"

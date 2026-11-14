@@ -1,27 +1,17 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, Heart } from 'lucide-react'
+import { ArrowRight, Github } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { useStatsState, formatCompact } from '@/lib/useStats'
-import { useLatestVersion } from '@/lib/useLatestVersion'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
 const heroScreens = [
-    { src: '/screenshots/VideoPlayer.webp', alt: 'Flow video player', side: true },
-    { src: '/screenshots/Home.webp', alt: 'Flow home feed', side: false },
-    { src: '/screenshots/MusicPlayer.webp', alt: 'Flow music player', side: true },
+    { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: 'SaveTube video player', side: true },
+    { src: `${import.meta.env.BASE_URL}screenshots/Home.webp`, alt: 'SaveTube home feed', side: false },
+    { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: 'SaveTube music player', side: true },
 ]
 
 export function Hero() {
-    const { stats, failed: statsFailed } = useStatsState()
-    const latestVersion = useLatestVersion()
     const reduceMotion = useReducedMotion()
-
-    const proof = [
-        { value: stats ? stats.stars.toLocaleString() : '...', label: 'stars' },
-        { value: stats ? formatCompact(stats.downloads) : '...', label: 'downloads' },
-        { value: stats ? stats.contributors.toString() : '...', label: 'contributors' },
-    ]
 
     return (
         <section
@@ -58,28 +48,13 @@ export function Hero() {
                     transition={{ delay: 0.26, duration: 0.7, ease }}
                     className="flex flex-wrap items-center justify-center gap-3"
                 >
-                    <Button to="/changelog" variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
-                        {latestVersion ? `What's new in ${latestVersion}` : "What's new"}
+                    <Button to="/download" variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
+                        Download SaveTube
                     </Button>
-                    <Button href="#support" variant="outline" size="md" icon={<Heart className="w-4 h-4 text-accent-primary fill-accent-primary" />}>
-                        Support Flow
+                    <Button href="https://github.com/goldendevuz/flow-desktop" variant="outline" size="md" icon={<Github className="w-4 h-4" />}>
+                        View the source
                     </Button>
                 </motion.div>
-
-                {!statsFailed && (
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.34, duration: 0.7, ease }}
-                        className="kicker mt-6 flex flex-wrap justify-center gap-x-5 gap-y-1"
-                    >
-                        {proof.map(item => (
-                            <span key={item.label}>
-                                <span className="text-text-primary tabular-nums">{item.value}</span> {item.label}
-                            </span>
-                        ))}
-                    </motion.p>
-                )}
             </div>
 
             <motion.div
