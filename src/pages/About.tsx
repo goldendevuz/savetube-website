@@ -47,7 +47,7 @@ const sections: LegalSection[] = [
         content: (
             <ul>
                 <li>{link('https://github.com/goldendevuz/savetube-android', 'Android app')}</li>
-                <li>{link('https://github.com/goldendevuz/flow-desktop', 'Windows app')}</li>
+                <li>{link('https://github.com/goldendevuz/savetube-desktop', 'Windows app')}</li>
                 <li>{link('https://github.com/goldendevuz/savetube-extension', 'Browser extension')}</li>
                 <li>{link('https://github.com/goldendevuz/savetube-website', 'This website')}</li>
             </ul>

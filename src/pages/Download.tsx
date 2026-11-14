@@ -10,7 +10,7 @@ const sections: LegalSection[] = [
         title: 'Windows',
         content: (
             <>
-                <p>Download the <strong>SaveTube</strong> installer (<code>SaveTube_…_x64-setup.exe</code>) from {link('https://github.com/goldendevuz/flow-desktop/releases/latest', 'the latest release')} and run it.</p>
+                <p>Download the <strong>SaveTube</strong> installer (<code>SaveTube_…_x64-setup.exe</code>) from {link('https://github.com/goldendevuz/savetube-desktop/releases/latest', 'the latest release')} and run it.</p>
                 <p>The installer is not code-signed yet, so Windows SmartScreen may say it doesn't recognise the app. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. If Smart App Control blocks it, the app can't be installed on that PC until Smart App Control is turned off.</p>
                 <p>New versions install over the old one and keep your data.</p>
             </>

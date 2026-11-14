@@ -5,7 +5,7 @@ The website for [SaveTube](https://github.com/goldendevuz/savetube-android), an 
 Live site: https://goldendevuz.github.io/savetube-website/
 
 - [SaveTube for Android](https://github.com/goldendevuz/savetube-android)
-- [SaveTube for Windows](https://github.com/goldendevuz/flow-desktop)
+- [SaveTube for Windows](https://github.com/goldendevuz/savetube-desktop)
 - [SaveTube browser extension](https://github.com/goldendevuz/savetube-extension)
 
 ## Stack

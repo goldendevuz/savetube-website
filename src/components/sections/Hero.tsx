@@ -51,7 +51,7 @@ export function Hero() {
                     <Button to="/download" variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
                         Download SaveTube
                     </Button>
-                    <Button href="https://github.com/goldendevuz/flow-desktop" variant="outline" size="md" icon={<Github className="w-4 h-4" />}>
+                    <Button href="https://github.com/goldendevuz/savetube-desktop" variant="outline" size="md" icon={<Github className="w-4 h-4" />}>
                         View the source
                     </Button>
                 </motion.div>
