@@ -11,7 +11,7 @@ export function FinalCTA() {
                     <div className="mb-10">
                         <FadeIn delay={0.1}>
                             <h2 className="text-5xl md:text-6xl font-semibold mb-4 tracking-[-0.035em] text-text-primary">
-                                This is your <span className="font-serif italic font-normal tracking-[-0.01em] text-text-muted">Flow.</span>
+                                This is your <span className="font-serif italic font-normal tracking-[-0.01em] text-text-muted">SaveTube.</span>
                             </h2>
                         </FadeIn>
 
@@ -33,11 +33,11 @@ export function FinalCTA() {
                                 icon={<Download className="w-5 h-5" />}
                                 iconPosition="left"
                             >
-                                Download Flow
+                                Download SaveTube
                             </Button>
 
                             <Button
-                                href="https://github.com/Flow-Tube/Flow"
+                                href="https://github.com/goldendevuz/savetube-android"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 variant="outline"

@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Download, Sun, Moon, ChevronDown, ArrowRight, ArrowUpRight, Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
-import { useStats, formatCompact } from '@/lib/useStats'
 
 interface NavLinkItem {
     label: string
@@ -23,21 +22,20 @@ interface NavGroup {
 }
 
 function useNavGroups(): NavGroup[] {
-    const stats = useStats()
     return [
         {
             id: 'explore',
             label: 'Explore',
             featured: {
-                kicker: 'FlowNeuro',
+                kicker: 'SaveTube Neuro',
                 label: 'How it Works',
                 description: 'A recommendation engine that learns what you like on your phone, and nowhere else. See what it knows and how it builds your feed.',
                 href: '/how-it-works',
                 cta: 'See how it learns',
             },
             items: [
-                { label: 'Features', description: 'Everything Flow can do, from SponsorBlock to song recognition.', href: '/#features' },
-                { label: 'Every Screen', description: 'Tour Flow on Android, Android TV and desktop.', href: '/#showcase' },
+                { label: 'Features', description: 'Everything SaveTube can do, from SponsorBlock to song recognition.', href: '/#features' },
+                { label: 'Every Screen', description: 'Tour SaveTube on Android, Android TV and desktop.', href: '/#showcase' },
                 { label: 'FAQ', description: 'Straight answers on cost, privacy and installing.', href: '/#faq' },
             ],
         },
@@ -45,17 +43,13 @@ function useNavGroups(): NavGroup[] {
             id: 'community',
             label: 'Community',
             items: [
-                { label: 'Support Flow', description: 'No ads and no paid tier. Donations keep Flow going.', href: '/#support', heart: true },
-                { label: 'Patrons', description: 'The people who keep Flow free.', href: '/patrons' },
                 {
                     label: 'GitHub',
                     description: 'Star the source and follow development.',
-                    href: 'https://github.com/Flow-Tube/Flow',
+                    href: 'https://github.com/goldendevuz/savetube-android',
                     external: true,
-                    meta: stats ? `${formatCompact(stats.stars)} stars` : undefined,
                 },
-                { label: 'Reddit', description: 'Chat with other Flow users on r/Flow_Official.', href: 'https://reddit.com/r/flow_official', external: true },
-                { label: 'About', description: 'Why Flow exists and who builds it.', href: '/about' },
+                { label: 'About', description: 'Why SaveTube exists and who builds it.', href: '/about' },
             ],
         },
     ]
@@ -110,7 +104,7 @@ export function Header() {
     const toggleTheme = () => {
         const next = theme === 'light' ? 'dark' : 'light'
         document.documentElement.classList.toggle('dark', next === 'dark')
-        try { localStorage.setItem('flow-theme', next) } catch { /* storage unavailable */ }
+        try { localStorage.setItem('savetube-theme', next) } catch { /* storage unavailable */ }
         setTheme(next)
     }
 
@@ -185,9 +179,9 @@ export function Header() {
             <header className="absolute top-0 left-0 right-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between h-16 md:h-20">
-                        <Link to="/" className="flex items-center gap-2.5 group justify-self-start" aria-label="Flow home">
-                            <img src="/flow-icon.svg" className="w-9 h-9 md:w-10 md:h-10 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" alt="" />
-                            <span className="font-display text-2xl md:text-[1.75rem] font-semibold tracking-[-0.03em] text-text-primary">Flow</span>
+                        <Link to="/" className="flex items-center gap-2.5 group justify-self-start" aria-label="SaveTube home">
+                            <img src={`${import.meta.env.BASE_URL}savetube-icon.svg`} className="w-9 h-9 md:w-10 md:h-10 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" alt="" />
+                            <span className="font-display text-2xl md:text-[1.75rem] font-semibold tracking-[-0.03em] text-text-primary">SaveTube</span>
                         </Link>
 
                         <nav ref={navRef} aria-label="Main" className="hidden md:flex items-center gap-1">
@@ -267,17 +261,6 @@ export function Header() {
                                     </div>
                                 )
                             })}
-
-                            <Link
-                                to="/changelog"
-                                aria-current={location.pathname === '/changelog' ? 'page' : undefined}
-                                className={cn(
-                                    'px-3.5 py-2 text-[15px] font-medium transition-colors',
-                                    location.pathname === '/changelog' ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
-                                )}
-                            >
-                                Changelog
-                            </Link>
                         </nav>
 
                         <div className="hidden md:flex items-center justify-self-end gap-2">
@@ -363,11 +346,6 @@ export function Header() {
                                         </ul>
                                     </div>
                                 ))}
-                                <div className="py-4 border-t border-border-subtle">
-                                    <Link to="/changelog" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 font-display text-xl font-semibold tracking-[-0.01em] text-text-primary">
-                                        Changelog
-                                    </Link>
-                                </div>
                             </div>
 
                             <div className="p-5 border-t border-border-subtle">

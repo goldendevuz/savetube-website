@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Github, Heart, Languages } from 'lucide-react'
+import { ArrowRight, Github, Heart } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { useStats } from '@/lib/useStats'
 import { AFFILIATION_NOTICE } from '@/components/layout/LegalPage'
-import { OPEN_COLLECTIVE_URL, OpenCollectiveIcon, PATREON_URL, PatreonIcon } from '@/components/ui/BrandIcons'
 
 interface FooterLink {
     label: string
@@ -13,7 +11,7 @@ interface FooterLink {
 
 const columns: { title: string; links: FooterLink[] }[] = [
     {
-        title: 'Get Flow',
+        title: 'Get SaveTube',
         links: [
             { label: 'Download', href: '/download' },
             { label: 'GitHub Releases', href: '/download#github-releases' },
@@ -28,41 +26,26 @@ const columns: { title: string; links: FooterLink[] }[] = [
             { label: 'Features', href: '/#features' },
             { label: 'How it Works', href: '/how-it-works' },
             { label: 'Every Screen', href: '/#showcase' },
-            { label: 'Changelog', href: '/changelog' },
         ],
     },
     {
         title: 'Get Help',
         links: [
-            { label: 'r/Flow_Official', href: 'https://reddit.com/r/flow_official', external: true },
-            { label: 'Report an Issue', href: 'https://github.com/Flow-Tube/Flow/issues', external: true },
-            { label: 'Verify Your APK', href: 'https://github.com/Flow-Tube/Flow#cert', external: true },
-            { label: 'Security', href: 'https://github.com/Flow-Tube/Flow/security/policy', external: true },
+            { label: 'Report an Issue', href: 'https://github.com/goldendevuz/savetube-android/issues', external: true },
+            { label: 'Verify Your APK', href: 'https://github.com/goldendevuz/savetube-android#cert', external: true },
+            { label: 'Security', href: 'https://github.com/goldendevuz/savetube-android/security/policy', external: true },
         ],
     },
 ]
 
 const aboutLinks: FooterLink[] = [
-    { label: 'About Flow', href: '/about' },
-    { label: 'Patrons', href: '/patrons' },
+    { label: 'About SaveTube', href: '/about' },
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'DMCA', href: '/dmca' },
 ]
 
-function RedditIcon({ className }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-            <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.508 1.183-.833 2.822-1.393 4.61-1.48l.84-3.922c.046-.216.257-.354.472-.313l3.05.642a1.24 1.24 0 0 1 1.049-.937zM16 11.23c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-8 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm0 5.46c2.08 0 3.754-.925 3.968-1.077l-.608-.813c-.11.082-1.57.94-3.36.94-1.789 0-3.25-.858-3.36-.94l-.608.813c.214.152 1.888 1.077 3.968 1.077z" />
-        </svg>
-    )
-}
-
 const socials = [
-    { label: 'GitHub', href: 'https://github.com/Flow-Tube/Flow', icon: Github },
-    { label: 'Reddit', href: 'https://reddit.com/r/flow_official', icon: RedditIcon },
-    { label: 'Open Collective', href: OPEN_COLLECTIVE_URL, icon: OpenCollectiveIcon },
-    { label: 'Patreon', href: PATREON_URL, icon: PatreonIcon },
-    { label: 'Translate on Weblate', href: 'https://hosted.weblate.org/engage/flow/', icon: Languages },
+    { label: 'GitHub', href: 'https://github.com/goldendevuz/savetube-android', icon: Github },
 ]
 
 const RING_CENTER = { x: 560, y: 420 }
@@ -112,14 +95,12 @@ function FooterLinkItem({ link }: { link: FooterLink }) {
 }
 
 export function Footer() {
-    const stats = useStats()
-
     return (
         <footer className="bg-bg-primary px-2 pb-2 md:px-3 md:pb-3">
             <div className="tone-inverse relative overflow-hidden rounded-[24px] md:rounded-[32px]">
                 <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-16 pb-12 md:pt-24 md:pb-16">
                     <h2 className="text-6xl md:text-8xl font-semibold tracking-[-0.04em] leading-[0.95] text-text-primary mb-5">
-                        Flow
+                        SaveTube
                     </h2>
                     <p className="max-w-md text-base md:text-lg font-medium leading-relaxed text-text-primary">
                         A private, open-source YouTube and YouTube Music client. No ads, no account, no tracking.
@@ -138,7 +119,7 @@ export function Footer() {
 
                     <div className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 max-w-2xl">
                         <div>
-                            <h3 className="font-sans text-[15px] font-semibold text-text-primary mb-4">Follow Flow</h3>
+                            <h3 className="font-sans text-[15px] font-semibold text-text-primary mb-4">Follow SaveTube</h3>
                             <ul className="flex items-center gap-4">
                                 {socials.map(social => (
                                     <li key={social.label}>
@@ -173,28 +154,19 @@ export function Footer() {
 
                     <div className="mt-16 md:mt-20 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 max-w-2xl">
                         <p className="text-base font-medium text-text-primary flex flex-wrap items-center gap-x-1.5">
-                            Made with <Heart className="w-4 h-4 text-accent-primary fill-accent-primary" aria-label="love" /> by
+                            Made with <Heart className="w-4 h-4 text-accent-primary fill-accent-primary" aria-label="love" /> from
                             <a
-                                href="https://github.com/A-EDev"
+                                href="https://github.com/Flow-Tube/Flow"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-accent-primary underline decoration-[1.5px] underline-offset-4 hover:text-accent-hover"
                             >
-                                A-EDev
-                            </a>
-                            and
-                            <a
-                                href="https://github.com/Flow-Tube/Flow/graphs/contributors"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline decoration-[1.5px] underline-offset-4 decoration-text-muted hover:decoration-text-primary"
-                            >
-                                {stats?.contributors ? `${stats.contributors} contributors` : 'the community'}
+                                Flow by A-EDev
                             </a>
                         </p>
                         <p className="kicker">
                             <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer" className="hover:text-text-primary transition-colors">GPL-3.0</a>
-                            {' '}&middot; &copy; {new Date().getFullYear()} Flow
+                            {' '}&middot; &copy; {new Date().getFullYear()} SaveTube
                         </p>
                     </div>
 

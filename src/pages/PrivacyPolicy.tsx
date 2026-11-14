@@ -45,7 +45,7 @@ const services = [
     {
         name: 'GitHub',
         gets: 'A check for the latest release.',
-        when: 'When Flow checks for updates. GitHub build only.',
+        when: 'When SaveTube checks for updates. GitHub build only.',
     },
     {
         name: 'Your TV or speaker',
@@ -86,11 +86,11 @@ const sections: LegalSection[] = [
         title: 'On your device',
         content: (
             <>
-                <p>Flow stores your watch and search history, subscriptions, playlists, downloads, settings, and your FlowNeuro video and music profiles on your phone.</p>
+                <p>SaveTube stores your watch and search history, subscriptions, playlists, downloads, settings, and your SaveTube Neuro video and music profiles on your phone.</p>
                 <ul>
                     <li><strong>Export it</strong> from Settings, or schedule automatic backups to a folder you choose.</li>
                     <li><strong>Sync it</strong> between your own devices over local Wi-Fi, after pairing them with a QR code and matching codes. It doesn't pass through any server.</li>
-                    <li><strong>Delete it</strong> by resetting your profiles in Settings › Your taste, clearing the app's data in Android settings, or uninstalling Flow.</li>
+                    <li><strong>Delete it</strong> by resetting your profiles in Settings › Your taste, clearing the app's data in Android settings, or uninstalling SaveTube.</li>
                 </ul>
             </>
         ),
@@ -100,7 +100,7 @@ const sections: LegalSection[] = [
         title: 'What the app sends, and to whom',
         content: (
             <>
-                <p>To show you videos and music, Flow talks directly to these services. Every request comes from your own IP address. Flow has no servers of its own and doesn't route anything through us, so we never see it. Each service handles your requests under its own privacy policy.</p>
+                <p>To show you videos and music, SaveTube talks directly to these services. Every request comes from your own IP address. SaveTube has no servers of its own and doesn't route anything through us, so we never see it. Each service handles your requests under its own privacy policy.</p>
                 <Rows rows={services.map(s => ({ title: s.name, body: s.gets, note: s.when }))} />
             </>
         ),
@@ -110,7 +110,7 @@ const sections: LegalSection[] = [
         title: 'Permissions',
         content: (
             <>
-                <p>What each Android permission Flow asks for is used for.</p>
+                <p>What each Android permission SaveTube asks for is used for.</p>
                 <Rows rows={permissions.map(p => ({ title: p.name, body: p.why }))} />
             </>
         ),
@@ -119,7 +119,7 @@ const sections: LegalSection[] = [
         id: 'telemetry',
         title: 'Analytics and crash reports',
         content: (
-            <p>Flow contains no analytics, tracking or crash-reporting code. We have no way of knowing how you use the app or whether it crashed. If something goes wrong, you can copy the error details and <a href="https://github.com/Flow-Tube/Flow/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer">report it on GitHub</a> yourself.</p>
+            <p>SaveTube contains no analytics, tracking or crash-reporting code. We have no way of knowing how you use the app or whether it crashed. If something goes wrong, you can copy the error details and <a href="https://github.com/goldendevuz/savetube-android/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer">report it on GitHub</a> yourself.</p>
         ),
     },
     {
@@ -128,7 +128,7 @@ const sections: LegalSection[] = [
         content: (
             <ul>
                 <li>It reads the ID of the YouTube or YouTube Music video you act on, plus a timestamp or playlist if there is one.</li>
-                <li>It sends that only to the Flow desktop app on your own computer, through <strong>127.0.0.1</strong> or a <strong>flow://</strong> link. It contacts no other server and has no analytics.</li>
+                <li>It sends that only to the SaveTube desktop app on your own computer, through <strong>127.0.0.1</strong> or a <strong>savetube://</strong> link. It contacts no other server and has no analytics.</li>
                 <li>It needs access to youtube.com, m.youtube.com and music.youtube.com to show its buttons, plus the right-click menu and storage for its settings. Access to 127.0.0.1 is optional and only requested if you turn on silent mode.</li>
             </ul>
         ),
@@ -139,7 +139,6 @@ const sections: LegalSection[] = [
         content: (
             <ul>
                 <li>It's hosted on <strong>Cloudflare Pages</strong>, so Cloudflare handles your requests and sees your IP address and the pages you request.</li>
-                <li>Live numbers, download links, release notes and the contributor list load from <strong>assets.flow-tube.org</strong>, which is hosted on <strong>GitHub Pages</strong>, so GitHub sees your IP address when these pages load them.</li>
                 <li>Its fonts are served from this site. Nothing loads from Google.</li>
                 <li>The <Link to="/about">About</Link> page loads contributor pictures from <strong>GitHub</strong>, so GitHub sees your IP address when you open it.</li>
                 <li>Your light or dark mode choice is saved in your browser. There are no cookies, analytics or trackers.</li>
@@ -152,7 +151,7 @@ const sections: LegalSection[] = [
         content: (
             <>
                 <p>When this policy changes, the date at the top changes, and the edit is visible in the website's public repository on GitHub.</p>
-                <p>Questions? Open an issue on <a href="https://github.com/Flow-Tube/Flow/issues" target="_blank" rel="noopener noreferrer">GitHub</a> or ask on <a href="https://reddit.com/r/flow_official" target="_blank" rel="noopener noreferrer">r/Flow_Official</a>.</p>
+                <p>Questions? Open an issue on <a href="https://github.com/goldendevuz/savetube-android/issues" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
             </>
         ),
     },
@@ -165,7 +164,7 @@ export function PrivacyPolicy() {
             title="Your data"
             accent="stays yours."
             updated="7 November 2026"
-            intro={<p>Flow has no accounts, no servers of its own and no analytics. What you do in the app stays on your phone. To show you videos and music, the app talks directly to YouTube and a few other services, listed below with exactly what each one receives.</p>}
+            intro={<p>SaveTube has no accounts, no servers of its own and no analytics. What you do in the app stays on your phone. To show you videos and music, the app talks directly to YouTube and a few other services, listed below with exactly what each one receives.</p>}
             sections={sections}
         />
     )

@@ -24,27 +24,27 @@ interface Question {
 
 const groups: { label: string; questions: Question[] }[] = [
     {
-        label: 'Getting Flow',
+        label: 'Getting SaveTube',
         questions: [
             {
                 id: 'faq-cost',
-                question: 'What does Flow cost?',
-                answer: <>Nothing. No ads, no premium tier, and no data sold. Flow is GPL-3.0 licensed and funded by people who choose to donate.</>,
+                question: 'What does SaveTube cost?',
+                answer: <>Nothing. No ads, no premium tier, and no data sold. SaveTube is GPL-3.0 licensed, built for personal use, and has no paid version.</>,
             },
             {
                 id: 'faq-install',
                 question: 'How do I install it?',
-                answer: <>The <Page to="/download">Download page</Page> picks the right file for your device. You can also add Flow to <Ext href="https://apt.izzysoft.de/packages/io.github.aedev.flow">IzzyOnDroid</Ext> or <Ext href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Flow-Tube/Flow/">Obtainium</Ext> for automatic updates. No store account needed. Flow runs on Android 8.0 and newer, and you can <Ext href="https://github.com/Flow-Tube/Flow#cert">verify the APK</Ext> before installing.</>,
+                answer: <>The <Page to="/download">Download page</Page> picks the right file for your device. You can also add SaveTube to <Ext href="https://apt.izzysoft.de/packages/io.github.aedev.savetube">IzzyOnDroid</Ext> or <Ext href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/goldendevuz/savetube-android/">Obtainium</Ext> for automatic updates. No store account needed. SaveTube runs on Android 8.0 and newer, and you can <Ext href="https://github.com/goldendevuz/savetube-android#cert">verify the APK</Ext> before installing.</>,
             },
             {
                 id: 'faq-updates',
                 question: 'How do I get updates?',
-                answer: <>The GitHub build checks for updates itself, from Settings. IzzyOnDroid and Obtainium update Flow for you. Want new features early? <Page to="/download#nightly">Flow Nightly</Page> installs next to the stable app and updates itself.</>,
+                answer: <>The GitHub build checks for updates itself, from Settings. IzzyOnDroid and Obtainium update SaveTube for you. Want new features early? <Page to="/download#nightly">SaveTube Nightly</Page> installs next to the stable app and updates itself.</>,
             },
             {
                 id: 'faq-import',
                 question: 'Can I bring my subscriptions and history?',
-                answer: <>Yes. Import a Google Takeout ZIP for your YouTube subscriptions, watch history and playlists in one go, or import from NewPipe, LibreTube or a Flow backup. You can export everything the same way, or schedule automatic backups to a folder.</>,
+                answer: <>Yes. Import a Google Takeout ZIP for your YouTube subscriptions, watch history and playlists in one go, or import from NewPipe, LibreTube or a SaveTube backup. You can export everything the same way, or schedule automatic backups to a folder.</>,
             },
             {
                 id: 'faq-tv-desktop',
@@ -54,7 +54,7 @@ const groups: { label: string; questions: Question[] }[] = [
             {
                 id: 'faq-extension',
                 question: 'Is there a browser extension?',
-                answer: <>Yes. It adds Watch in Flow and Download buttons to YouTube and YouTube Music in Chrome, Edge, Brave, Opera, Vivaldi and Firefox, and hands the video to the Flow desktop app. Get it from the <Page to="/download#browser-extension">Download page</Page>.</>,
+                answer: <>Yes. It adds Watch in SaveTube and Download buttons to YouTube and YouTube Music in Chrome, Edge, Brave, Opera, Vivaldi and Firefox, and hands the video to the SaveTube desktop app. Get it from the <Page to="/download#browser-extension">Download page</Page>.</>,
             },
         ],
     },
@@ -64,16 +64,16 @@ const groups: { label: string; questions: Question[] }[] = [
             {
                 id: 'faq-account',
                 question: 'Do I need a Google account?',
-                answer: <>No. Flow works without signing in. Your subscriptions, history and preferences are stored on your phone.</>,
+                answer: <>No. SaveTube works without signing in. Your subscriptions, history and preferences are stored on your phone.</>,
             },
             {
                 id: 'faq-engine',
                 question: 'How does the recommendation engine stay private?',
-                answer: <>FlowNeuro runs on your phone and keeps what it learns in a file there. You can see it, boost or block topics, or erase it. <Page to="/how-it-works">How it works</Page> explains every rule.</>,
+                answer: <>SaveTube Neuro runs on your phone and keeps what it learns in a file there. You can see it, boost or block topics, or erase it. <Page to="/how-it-works">How it works</Page> explains every rule.</>,
             },
             {
                 id: 'faq-network',
-                question: 'What does Flow send over the internet?',
+                question: 'What does SaveTube send over the internet?',
                 answer: <>Requests to YouTube for videos and music, and the video ID to SponsorBlock, DeArrow and Return YouTube Dislike. Lyrics, song recognition, casting and Discord Rich Presence only contact their services when you use them. The <Page to="/privacy">Privacy Policy</Page> lists every one.</>,
             },
         ],
@@ -83,8 +83,8 @@ const groups: { label: string; questions: Question[] }[] = [
         questions: [
             {
                 id: 'faq-affiliated',
-                question: 'Is Flow affiliated with YouTube?',
-                answer: <>No. Flow is an independent, open-source client for YouTube's public catalog. It doesn't host, upload or redistribute any content, and it isn't endorsed by YouTube or Google.</>,
+                question: 'Is SaveTube affiliated with YouTube?',
+                answer: <>No. SaveTube is an independent, open-source client for YouTube's public catalog. It doesn't host, upload or redistribute any content, and it isn't endorsed by YouTube or Google.</>,
             },
             {
                 id: 'faq-builds',
@@ -94,7 +94,7 @@ const groups: { label: string; questions: Question[] }[] = [
             {
                 id: 'faq-help',
                 question: 'How can I help?',
-                answer: <>Report bugs, suggest features, <Ext href="https://hosted.weblate.org/engage/flow/">translate Flow</Ext> or send code on <Ext href="https://github.com/Flow-Tube/Flow">GitHub</Ext>. If code isn't your thing, starring the repo and telling a friend helps more than you'd think.</>,
+                answer: <>Report bugs, suggest features, send code on <Ext href="https://github.com/goldendevuz/savetube-android">GitHub</Ext>. If code isn't your thing, starring the repo and telling a friend helps more than you'd think.</>,
             },
         ],
     },
@@ -138,10 +138,8 @@ export function FAQ() {
                                 <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">answered.</span>
                             </h2>
                             <p className="text-text-secondary leading-relaxed">
-                                Didn't find yours? Ask on{' '}
-                                <Ext href="https://reddit.com/r/flow_official">r/Flow_Official</Ext>
-                                {' '}or{' '}
-                                <Ext href="https://github.com/Flow-Tube/Flow/issues">open an issue</Ext>.
+                                Didn't find yours?{' '}
+                                <Ext href="https://github.com/goldendevuz/savetube-android/issues">Open an issue</Ext>.
                             </p>
                         </div>
                     </FadeIn>

@@ -30,7 +30,7 @@ export function NeuroEngine() {
                             <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">It tells no one.</span>
                         </h2>
                         <p className="text-lg text-text-secondary leading-relaxed">
-                            FlowNeuro builds your feed from what you watch, skip and search. It keeps what it learns
+                            SaveTube Neuro builds your feed from what you watch, skip and search. It keeps what it learns
                             in one file on your phone, and you can see all of it, change it, or erase it.
                         </p>
                     </div>
@@ -48,7 +48,7 @@ export function NeuroEngine() {
                         ))}
                         <FadeIn delay={0.25}>
                             <Button to="/how-it-works" variant="primary" size="md" className="mt-6" icon={<ArrowRight className="w-4 h-4" />}>
-                                How FlowNeuro works
+                                How SaveTube Neuro works
                             </Button>
                         </FadeIn>
                     </div>
@@ -58,7 +58,7 @@ export function NeuroEngine() {
                             <div className="rounded-[36px] bg-[#1a1716] p-[7px] border border-border-subtle shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
                                 <img
                                     src="/screenshots/YourTaste.webp"
-                                    alt="The Your taste screen in Flow: The Explorer persona, profile maturity, and the taste shape chart comparing the whole profile with right now"
+                                    alt="The Your taste screen in SaveTube: The Explorer persona, profile maturity, and the taste shape chart comparing the whole profile with right now"
                                     width={575}
                                     height={1237}
                                     loading="lazy"

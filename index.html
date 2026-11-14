@@ -2,23 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/flow-icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/savetube-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>Flow - A YouTube Client That Learns With You</title>
-    <meta name="description" content="Flow is a modern, privacy-first Android YouTube client with an on-device recommendation engine. No ads, no tracking, just personalized content discovery." />
+    <title>SaveTube - A YouTube Client That Learns With You</title>
+    <meta name="description" content="SaveTube is a modern, privacy-first YouTube client for Windows and Android with an on-device recommendation engine. No ads, no tracking, just personalized content discovery." />
     <meta name="keywords" content="YouTube client, Android, privacy, neural engine, recommendations, open source, no ads" />
-    <meta name="author" content="A-EDev" />
+    <meta name="author" content="SaveTube" />
     
-    <meta property="og:title" content="Flow - A YouTube Client That Learns With You" />
-    <meta property="og:description" content="A modern, privacy-first Android YouTube client with an on-device recommendation engine." />
+    <meta property="og:title" content="SaveTube - A YouTube Client That Learns With You" />
+    <meta property="og:description" content="A modern, privacy-first YouTube client for Windows and Android with an on-device recommendation engine." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://flow-tube.org" />
-    <meta property="og:image" content="https://flow-tube.org/og-image.png" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Flow - A YouTube Client That Learns With You" />
-    <meta name="twitter:description" content="A modern, privacy-first Android YouTube client with an on-device recommendation engine." />
+    <meta name="twitter:title" content="SaveTube - A YouTube Client That Learns With You" />
+    <meta name="twitter:description" content="A modern, privacy-first YouTube client for Windows and Android with an on-device recommendation engine." />
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
     
@@ -28,7 +26,7 @@
     <script>
       (function () {
         try {
-          var saved = localStorage.getItem('flow-theme');
+          var saved = localStorage.getItem('savetube-theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           if (saved === 'dark' || (!saved && prefersDark)) {
             document.documentElement.classList.add('dark');
@@ -41,8 +39,8 @@
         var url = el && (el.src || el.href);
         if (!url || url.indexOf('/assets/') === -1) return;
         try {
-          if (sessionStorage.getItem('flow-asset-retry')) return;
-          sessionStorage.setItem('flow-asset-retry', '1');
+          if (sessionStorage.getItem('savetube-asset-retry')) return;
+          sessionStorage.setItem('savetube-asset-retry', '1');
         } catch (e) {
           return;
         }

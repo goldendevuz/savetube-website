@@ -1,12 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from '@/pages/Home'
-import { ChangelogPage } from '@/pages/Changelog'
 import { NotFound } from '@/pages/NotFound'
 
 import { PrivacyPolicy } from '@/pages/PrivacyPolicy'
 import { DMCA } from '@/pages/DMCA'
 import { About } from '@/pages/About'
-import { Patrons } from '@/pages/Patrons'
 import { HowItWorks } from '@/pages/HowItWorks'
 import { Download } from '@/pages/Download'
 import { ScrollToTop } from '@/components/ScrollToTop'
@@ -17,11 +15,9 @@ function App() {
             <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/changelog" element={<ChangelogPage />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/dmca" element={<DMCA />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/patrons" element={<Patrons />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/download" element={<Download />} />
                 <Route path="*" element={<NotFound />} />

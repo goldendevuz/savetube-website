@@ -23,7 +23,7 @@ export function NotFound() {
                     <motion.img 
                         animate={{ y: [0, -15, 0] }}
                         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                        src="/404Flow.webp" 
+                        src="/404SaveTube.webp" 
                         alt="404 Illustration" 
                         className="w-full h-auto max-h-[45vh] md:max-h-[55vh] object-contain drop-shadow-2xl filter"
                     />
@@ -39,7 +39,7 @@ export function NotFound() {
                         You're off the grid.
                     </h2>
                     <p className="text-lg md:text-xl text-text-secondary max-w-lg mx-auto mb-10 font-medium leading-relaxed">
-                        The page you are looking for doesn't exist, has been moved, or lost in the flow.
+                        The page you are looking for doesn't exist, has been moved, or lost in the savetube.
                     </p>
                     
                     <div className="flex flex-wrap justify-center items-center gap-4">

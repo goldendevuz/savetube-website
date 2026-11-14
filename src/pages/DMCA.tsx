@@ -3,9 +3,9 @@ import { LegalPage, type LegalSection, AFFILIATION_NOTICE } from '@/components/l
 const sections: LegalSection[] = [
     {
         id: 'what-flow-is',
-        title: 'What Flow is',
+        title: 'What SaveTube is',
         content: (
-            <p>Flow is a free, open-source app, licensed under GPL-3.0, that plays YouTube's public catalog. It doesn't host, upload, store or redistribute any videos or music. Everything you watch or hear in Flow is streamed directly from YouTube.</p>
+            <p>SaveTube is a free, open-source app, licensed under GPL-3.0, that plays YouTube's public catalog. It doesn't host, upload, store or redistribute any videos or music. Everything you watch or hear in SaveTube is streamed directly from YouTube.</p>
         ),
     },
     {
@@ -14,7 +14,7 @@ const sections: LegalSection[] = [
         content: (
             <>
                 <p>If a video or song infringes your copyright, the place to act is YouTube, which hosts it. Use <a href="https://support.google.com/youtube/answer/2807622" target="_blank" rel="noopener noreferrer">YouTube's copyright removal process</a>.</p>
-                <p>Once YouTube removes something, it's gone from Flow too. Removing Flow from app stores wouldn't take the content down.</p>
+                <p>Once YouTube removes something, it's gone from SaveTube too. Removing SaveTube from app stores wouldn't take the content down.</p>
             </>
         ),
     },
@@ -27,9 +27,9 @@ const sections: LegalSection[] = [
     },
     {
         id: 'source-code',
-        title: 'Flow\'s source code',
+        title: 'SaveTube\'s source code',
         content: (
-            <p>Flow's code is public on <a href="https://github.com/Flow-Tube/Flow" target="_blank" rel="noopener noreferrer">GitHub</a> under GPL-3.0. If you believe any part of it infringes your rights, open an issue there and we'll look into it.</p>
+            <p>SaveTube's code is public on <a href="https://github.com/goldendevuz/savetube-android" target="_blank" rel="noopener noreferrer">GitHub</a> under GPL-3.0. If you believe any part of it infringes your rights, open an issue there and we'll look into it.</p>
         ),
     },
     {
@@ -43,7 +43,7 @@ const sections: LegalSection[] = [
         id: 'contact',
         title: 'Contact',
         content: (
-            <p>Open an issue on <a href="https://github.com/Flow-Tube/Flow/issues" target="_blank" rel="noopener noreferrer">GitHub</a>, or post on <a href="https://reddit.com/r/flow_official" target="_blank" rel="noopener noreferrer">r/Flow_Official</a>. For anything you'd rather not post publicly, <a href="https://www.reddit.com/message/compose?to=/r/flow_official" target="_blank" rel="noopener noreferrer">message the subreddit's moderators</a>.</p>
+            <p>Open an issue on <a href="https://github.com/goldendevuz/savetube-android/issues" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
         ),
     },
 ]
@@ -55,7 +55,7 @@ export function DMCA() {
             title="Nothing hosted,"
             accent="nothing to take down."
             updated="27 September 2026"
-            intro={<p>Flow is a client app. It plays videos that live on YouTube and doesn't store any of them. Here's where to go if you believe something infringes your copyright.</p>}
+            intro={<p>SaveTube is a client app. It plays videos that live on YouTube and doesn't store any of them. Here's where to go if you believe something infringes your copyright.</p>}
             sections={sections}
         />
     )

@@ -51,7 +51,7 @@ export function AppShowcase() {
                         From pocket to desktop.
                     </h2>
                     <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
-                        The same engine, native everywhere. Flow runs on Android and Android TV today,
+                        The same engine, native everywhere. SaveTube runs on Android and Android TV today,
                         and the desktop app for Windows, Linux, and macOS, written in Rust
                         on Tauri 2, is in beta.
                     </p>
@@ -66,7 +66,7 @@ export function AppShowcase() {
                             <div className="aspect-[1/2.16] rounded-2xl border border-border-subtle bg-bg-primary overflow-hidden">
                                 <img
                                     src={screen.src}
-                                    alt={`Flow on Android: ${screen.label}`}
+                                    alt={`SaveTube on Android: ${screen.label}`}
                                     loading="lazy"
                                     className="w-full h-full object-cover"
                                 />
@@ -84,12 +84,12 @@ export function AppShowcase() {
                         <figure key={i} className="shrink-0 w-[340px] md:w-[440px]">
                             <div className="relative aspect-[16/10] rounded-xl border border-border-subtle bg-bg-primary overflow-hidden">
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                                    <img src="/flow-icon.svg" alt="" className="w-8 h-8 opacity-40" />
+                                    <img src={`${import.meta.env.BASE_URL}savetube-icon.svg`} alt="" className="w-8 h-8 opacity-40" />
                                     <span className="kicker">{screen.label}</span>
                                 </div>
                                 <img
                                     src={screen.src}
-                                    alt={`Flow on desktop: ${screen.label}`}
+                                    alt={`SaveTube on desktop: ${screen.label}`}
                                     loading="lazy"
                                     className="relative w-full h-full object-cover"
                                     onError={(e) => { e.currentTarget.style.display = 'none' }}
