@@ -27,6 +27,16 @@ const sections: LegalSection[] = [
         ),
     },
     {
+        id: 'tv',
+        title: 'Android TV and Google TV',
+        content: (
+            <>
+                <p>The Android app has a TV mode and shows up in the TV launcher. It installs without Google Play. Download <code>SaveTube-…-universal.apk</code> from {link('https://github.com/goldendevuz/savetube-android/releases/latest', 'the latest release')}; the universal file works on every TV, including the many that run 32-bit Android.</p>
+                <p><strong>Without a USB stick:</strong> install the <strong>Downloader</strong> app from Google Play on the TV, allow it to install unknown apps when asked, open this page in Downloader (<code>goldendevuz.github.io/savetube-website/download</code>), pick the universal APK and press Install. Or send the file from your phone with a "Send Files to TV" app. From a computer you can also use <code>adb connect &lt;TV address&gt;</code> and <code>adb install SaveTube-…-universal.apk</code> after turning on Developer options and network debugging on the TV.</p>
+            </>
+        ),
+    },
+    {
         id: 'extension',
         title: 'Browser extension',
         content: (
