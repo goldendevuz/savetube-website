@@ -1,4 +1,4 @@
-Fonts served by flow-tube.org
+Fonts served by the SaveTube website
 
 Inter                Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
 Instrument Sans      Copyright 2022 The Instrument Sans Project Authors (https://github.com/Instrument/instrument-sans)

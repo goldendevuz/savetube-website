@@ -2,7 +2,7 @@ import { LegalPage, type LegalSection, AFFILIATION_NOTICE } from '@/components/l
 
 const sections: LegalSection[] = [
     {
-        id: 'what-flow-is',
+        id: 'what-savetube-is',
         title: 'What SaveTube is',
         content: (
             <p>SaveTube is a free, open-source app, licensed under GPL-3.0, that plays YouTube's public catalog. It doesn't host, upload, store or redistribute any videos or music. Everything you watch or hear in SaveTube is streamed directly from YouTube.</p>
