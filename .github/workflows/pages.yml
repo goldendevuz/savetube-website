@@ -27,8 +27,13 @@ jobs:
       - run: npm run build
         env:
           SITE_BASE: /savetube-website/
-      # GitHub Pages answers unknown paths with 404.html; the app routes them on the client.
-      - run: cp dist/index.html dist/404.html
+      # Every page gets its own index.html, so each address answers 200 (stores and crawlers check the status);
+      # 404.html still serves the app for anything else, and the app routes it on the client.
+      - run: |
+          cp dist/index.html dist/404.html
+          for route in privacy extension-privacy dmca about download how-it-works; do
+            mkdir -p "dist/$route" && cp dist/index.html "dist/$route/index.html"
+          done
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

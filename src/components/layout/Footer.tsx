@@ -41,6 +41,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
 const aboutLinks: FooterLink[] = [
     { label: 'About SaveTube', href: '/about' },
     { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Extension Privacy', href: '/extension-privacy' },
     { label: 'DMCA', href: '/dmca' },
 ]
 
