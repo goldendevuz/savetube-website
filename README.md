@@ -30,3 +30,5 @@ The site is deployed to GitHub Pages by `.github/workflows/pages.yml` on every p
 ## Licence
 
 GPL-3.0, like the original. See `LICENSE`.
+
+Original work: Copyright © A-EDev, [Flow-Tube/Flow-Website](https://github.com/Flow-Tube/Flow-Website). SaveTube's changes are released under the same licence.
