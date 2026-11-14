@@ -17,7 +17,7 @@ const groups: FeatureGroup[] = [
         id: 'watch',
         label: 'Watch',
         lead: 'Playback without the parts you skip anyway.',
-        screen: { src: '/screenshots/VideoPlayer.webp', alt: 'The SaveTube video player', caption: 'Video player', width: 575, height: 1280 },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: 'The SaveTube video player', caption: 'Video player', width: 575, height: 1280 },
         items: [
             { title: 'SponsorBlock & DeArrow', description: 'Skips sponsors, intros and outros, and swaps clickbait titles and thumbnails for community ones.' },
             { title: 'Return YouTube Dislike', description: 'See the real rating, with community-sourced dislike counts.' },
@@ -38,7 +38,7 @@ const groups: FeatureGroup[] = [
         id: 'listen',
         label: 'Listen',
         lead: 'A music app that happens to live inside a video app.',
-        screen: { src: '/screenshots/MusicPlayer.webp', alt: 'The SaveTube music player', caption: 'Music player', width: 575, height: 1280 },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: 'The SaveTube music player', caption: 'Music player', width: 575, height: 1280 },
         items: [
             { title: 'Music Player', description: 'Album art, a queue you can reorder, shuffle and repeat.' },
             { title: 'Synchronized Lyrics', description: 'Lyrics that scroll with the song as it plays.' },
@@ -55,7 +55,7 @@ const groups: FeatureGroup[] = [
         id: 'yours',
         label: 'Yours',
         lead: 'No account, no tracking, and it looks the way you want.',
-        screen: { src: '/screenshots/Library.webp', alt: 'The SaveTube library', caption: 'Library', width: 575, height: 1280 },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/Library.webp`, alt: 'The SaveTube library', caption: 'Library', width: 575, height: 1280 },
         items: [
             { title: 'No Account, No Tracking', description: 'No Google sign-in, no ads, no analytics. Your data stays on your phone.' },
             { title: 'Import & Export', description: 'Bring subscriptions and history from NewPipe, and export everything anytime.' },
@@ -69,7 +69,7 @@ const groups: FeatureGroup[] = [
         id: 'everywhere',
         label: 'Everywhere',
         lead: 'The same SaveTube on your TV, your home screen, your computer and your browser.',
-        screen: { src: '/screenshots/desktop/Home.webp', alt: 'The SaveTube desktop app', caption: 'Desktop beta', width: 1915, height: 1020, desktop: true },
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/desktop/Home.webp`, alt: 'The SaveTube desktop app', caption: 'Desktop beta', width: 1915, height: 1020, desktop: true },
         items: [
             { title: 'Android TV', description: 'A TV interface built for the remote, with the same private feed.' },
             { title: 'Device Sync', description: 'Move your library, history and profile between your devices over local Wi-Fi, paired with a QR code.' },

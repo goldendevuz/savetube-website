@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/Button'
 const ease = [0.16, 1, 0.3, 1] as const
 
 const heroScreens = [
-    { src: '/screenshots/VideoPlayer.webp', alt: 'SaveTube video player', side: true },
-    { src: '/screenshots/Home.webp', alt: 'SaveTube home feed', side: false },
-    { src: '/screenshots/MusicPlayer.webp', alt: 'SaveTube music player', side: true },
+    { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: 'SaveTube video player', side: true },
+    { src: `${import.meta.env.BASE_URL}screenshots/Home.webp`, alt: 'SaveTube home feed', side: false },
+    { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: 'SaveTube music player', side: true },
 ]
 
 export function Hero() {
