@@ -2,6 +2,7 @@ import { Download, Github } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
 import { FadeIn } from '@/components/ui/TextReveal'
 import { Button } from '@/components/ui/Button'
+import { t } from '@/i18n'
 
 export function FinalCTA() {
     return (
@@ -11,15 +12,14 @@ export function FinalCTA() {
                     <div className="mb-10">
                         <FadeIn delay={0.1}>
                             <h2 className="text-5xl md:text-6xl font-semibold mb-4 tracking-[-0.035em] text-text-primary">
-                                This is your <span className="font-serif italic font-normal tracking-[-0.01em] text-text-muted">SaveTube.</span>
+                                {t("This is your")}{' '}<span className="font-serif italic font-normal tracking-[-0.01em] text-text-muted">{t("SaveTube.")}</span>
                             </h2>
                         </FadeIn>
 
                         <FadeIn delay={0.2}>
                             <p className="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-                                Not what an algorithm wants you to watch.
-                                <br />
-                                <span className="text-text-primary font-medium">What you want to discover.</span>
+                                {t("Not what an algorithm wants you to watch.")}<br />
+                                <span className="text-text-primary font-medium">{t("What you want to discover.")}</span>
                             </p>
                         </FadeIn>
                     </div>
@@ -33,8 +33,7 @@ export function FinalCTA() {
                                 icon={<Download className="w-5 h-5" />}
                                 iconPosition="left"
                             >
-                                Download SaveTube
-                            </Button>
+                                {t("Download SaveTube")}</Button>
 
                             <Button
                                 href="https://github.com/goldendevuz/savetube-android"
@@ -45,8 +44,7 @@ export function FinalCTA() {
                                 icon={<Github className="w-5 h-5" />}
                                 iconPosition="left"
                             >
-                                Star on GitHub
-                            </Button>
+                                {t("Star on GitHub")}</Button>
                         </div>
                     </FadeIn>
                 </div>

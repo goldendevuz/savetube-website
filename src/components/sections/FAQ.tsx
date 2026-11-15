@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link2, Plus } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
 import { FadeIn } from '@/components/ui/TextReveal'
 import { cn } from '@/lib/utils'
+import { t, tf } from '@/i18n'
+import { Rich } from '@/components/ui/Rich'
 
 const linkClass = 'font-semibold text-text-primary underline underline-offset-4 decoration-text-muted hover:decoration-text-primary'
 
 function Ext({ href, children }: { href: string; children: React.ReactNode }) {
     return <a href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>{children}</a>
-}
-
-function Page({ to, children }: { to: string; children: React.ReactNode }) {
-    return <Link to={to} className={linkClass}>{children}</Link>
 }
 
 interface Question {
@@ -24,77 +21,77 @@ interface Question {
 
 const groups: { label: string; questions: Question[] }[] = [
     {
-        label: 'Getting SaveTube',
+        label: t("Getting SaveTube"),
         questions: [
             {
                 id: 'faq-cost',
-                question: 'What does SaveTube cost?',
-                answer: <>Nothing. No ads, no premium tier, and no data sold. SaveTube is GPL-3.0 licensed, built for personal use, and has no paid version.</>,
+                question: t("What does SaveTube cost?"),
+                answer: <>{t("Nothing. No ads, no premium tier, and no data sold. SaveTube is GPL-3.0 licensed, built for personal use, and has no paid version.")}</>,
             },
             {
                 id: 'faq-install',
-                question: 'How do I install it?',
-                answer: <>The <Page to="/download">Download page</Page> picks the right file for your device. You can also add SaveTube to <Ext href="https://apt.izzysoft.de/packages/io.github.aedev.savetube">IzzyOnDroid</Ext> or <Ext href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/goldendevuz/savetube-android/">Obtainium</Ext> for automatic updates. No store account needed. SaveTube runs on Android 8.0 and newer, and you can <Ext href="https://github.com/goldendevuz/savetube-android#cert">verify the APK</Ext> before installing.</>,
+                question: t("How do I install it?"),
+                answer: <Rich text={t("The <l0>Download page</l0> picks the right file for your device. You can also add SaveTube to <l1>IzzyOnDroid</l1> or <l2>Obtainium</l2> for automatic updates. No store account needed. SaveTube runs on Android 8.0 and newer, and you can <l3>verify the APK</l3> before installing.")} links={[{'to': '/download'}, 'https://apt.izzysoft.de/packages/io.github.aedev.savetube', 'https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/goldendevuz/savetube-android/', 'https://github.com/goldendevuz/savetube-android#cert']} linkClassName={linkClass} />,
             },
             {
                 id: 'faq-updates',
-                question: 'How do I get updates?',
-                answer: <>The GitHub build checks for updates itself, from Settings. IzzyOnDroid and Obtainium update SaveTube for you. Want new features early? <Page to="/download#nightly">SaveTube Nightly</Page> installs next to the stable app and updates itself.</>,
+                question: t("How do I get updates?"),
+                answer: <Rich text={t("The GitHub build checks for updates itself, from Settings. IzzyOnDroid and Obtainium update SaveTube for you. Want new features early? <l0>SaveTube Nightly</l0> installs next to the stable app and updates itself.")} links={[{'to': '/download#nightly'}]} linkClassName={linkClass} />,
             },
             {
                 id: 'faq-import',
-                question: 'Can I bring my subscriptions and history?',
-                answer: <>Yes. Import a Google Takeout ZIP for your YouTube subscriptions, watch history and playlists in one go, or import from NewPipe, LibreTube or a SaveTube backup. You can export everything the same way, or schedule automatic backups to a folder.</>,
+                question: t("Can I bring my subscriptions and history?"),
+                answer: <>{t("Yes. Import a Google Takeout ZIP for your YouTube subscriptions, watch history and playlists in one go, or import from NewPipe, LibreTube or a SaveTube backup. You can export everything the same way, or schedule automatic backups to a folder.")}</>,
             },
             {
                 id: 'faq-tv-desktop',
-                question: 'Does it work on Android TV and desktop?',
-                answer: <>Android TV, yes: it has its own interface built for the remote. The desktop app for Windows, macOS and Linux is in beta, written in Rust on Tauri 2, and you can <Page to="/download">download it now</Page>.</>,
+                question: t("Does it work on Android TV and desktop?"),
+                answer: <Rich text={t("Android TV, yes: it has its own interface built for the remote. The desktop app for Windows, macOS and Linux is in beta, written in Rust on Tauri 2, and you can <l0>download it now</l0>.")} links={[{'to': '/download'}]} linkClassName={linkClass} />,
             },
             {
                 id: 'faq-extension',
-                question: 'Is there a browser extension?',
-                answer: <>Yes. It adds Watch in SaveTube and Download buttons to YouTube and YouTube Music in Chrome, Edge, Brave, Opera, Vivaldi and Firefox, and hands the video to the SaveTube desktop app. Get it from the <Page to="/download#browser-extension">Download page</Page>.</>,
+                question: t("Is there a browser extension?"),
+                answer: <Rich text={t("Yes. It adds Watch in SaveTube and Download buttons to YouTube and YouTube Music in Chrome, Edge, Brave, Opera, Vivaldi and Firefox, and hands the video to the SaveTube desktop app. Get it from the <l0>Download page</l0>.")} links={[{'to': '/download#browser-extension'}]} linkClassName={linkClass} />,
             },
         ],
     },
     {
-        label: 'Privacy',
+        label: t("Privacy"),
         questions: [
             {
                 id: 'faq-account',
-                question: 'Do I need a Google account?',
-                answer: <>No. SaveTube works without signing in. Your subscriptions, history and preferences are stored on your phone.</>,
+                question: t("Do I need a Google account?"),
+                answer: <>{t("No. SaveTube works without signing in. Your subscriptions, history and preferences are stored on your phone.")}</>,
             },
             {
                 id: 'faq-engine',
-                question: 'How does the recommendation engine stay private?',
-                answer: <>SaveTube Neuro runs on your phone and keeps what it learns in a file there. You can see it, boost or block topics, or erase it. <Page to="/how-it-works">How it works</Page> explains every rule.</>,
+                question: t("How does the recommendation engine stay private?"),
+                answer: <Rich text={t("SaveTube Neuro runs on your phone and keeps what it learns in a file there. You can see it, boost or block topics, or erase it. <l0>How it works</l0> explains every rule.")} links={[{'to': '/how-it-works'}]} linkClassName={linkClass} />,
             },
             {
                 id: 'faq-network',
-                question: 'What does SaveTube send over the internet?',
-                answer: <>Requests to YouTube for videos and music, and the video ID to SponsorBlock, DeArrow and Return YouTube Dislike. Lyrics, song recognition, casting and Discord Rich Presence only contact their services when you use them. The <Page to="/privacy">Privacy Policy</Page> lists every one.</>,
+                question: t("What does SaveTube send over the internet?"),
+                answer: <Rich text={t("Requests to YouTube for videos and music, and the video ID to SponsorBlock, DeArrow and Return YouTube Dislike. Lyrics, song recognition, casting and Discord Rich Presence only contact their services when you use them. The <l0>Privacy Policy</l0> lists every one.")} links={[{'to': '/privacy'}]} linkClassName={linkClass} />,
             },
         ],
     },
     {
-        label: 'The project',
+        label: t("The project"),
         questions: [
             {
                 id: 'faq-affiliated',
-                question: 'Is SaveTube affiliated with YouTube?',
-                answer: <>No. SaveTube is an independent, open-source client for YouTube's public catalog. It doesn't host, upload or redistribute any content, and it isn't endorsed by YouTube or Google.</>,
+                question: t("Is SaveTube affiliated with YouTube?"),
+                answer: <>{t("No. SaveTube is an independent, open-source client for YouTube's public catalog. It doesn't host, upload or redistribute any content, and it isn't endorsed by YouTube or Google.")}</>,
             },
             {
                 id: 'faq-builds',
-                question: 'What\'s the difference between the GitHub and FOSS builds?',
-                answer: <>The GitHub build includes the in-app updater and Discord Rich Presence. The FOSS build leaves both out. Everything else is the same.</>,
+                question: t("What's the difference between the GitHub and FOSS builds?"),
+                answer: <>{t("The GitHub build includes the in-app updater and Discord Rich Presence. The FOSS build leaves both out. Everything else is the same.")}</>,
             },
             {
                 id: 'faq-help',
-                question: 'How can I help?',
-                answer: <>Report bugs, suggest features, send code on <Ext href="https://github.com/goldendevuz/savetube-android">GitHub</Ext>. If code isn't your thing, starring the repo and telling a friend helps more than you'd think.</>,
+                question: t("How can I help?"),
+                answer: <Rich text={t("Report bugs, suggest features, send code on <l0>GitHub</l0>. If code isn't your thing, starring the repo and telling a friend helps more than you'd think.")} links={['https://github.com/goldendevuz/savetube-android']} linkClassName={linkClass} />,
             },
         ],
     },
@@ -132,14 +129,14 @@ export function FAQ() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                     <FadeIn className="lg:col-span-4">
                         <div className="lg:sticky lg:top-32">
-                            <p className="kicker mb-4">04 &middot; FAQ</p>
+                            <p className="kicker mb-4">{t("04 · FAQ")}</p>
                             <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.035em] leading-[1.02] text-text-primary mb-5">
-                                Asked and{' '}
-                                <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">answered.</span>
+                                {t("Asked and")}{' '}
+                                <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">{t("answered.")}</span>
                             </h2>
                             <p className="text-text-secondary leading-relaxed">
-                                Didn't find yours?{' '}
-                                <Ext href="https://github.com/goldendevuz/savetube-android/issues">Open an issue</Ext>.
+                                {t("Didn't find yours?")}{' '}
+                                <Ext href="https://github.com/goldendevuz/savetube-android/issues">{t("Open an issue")}</Ext>.
                             </p>
                         </div>
                     </FadeIn>
@@ -172,7 +169,7 @@ export function FAQ() {
                                                     </button>
                                                     <a
                                                         href={`#${q.id}`}
-                                                        aria-label={`Link to "${q.question}"`}
+                                                        aria-label={tf(t("Link to \"%s\""), q.question)}
                                                         className="order-first -ml-7 w-5 opacity-0 group-hover:opacity-100 focus:opacity-100 text-text-muted hover:text-text-primary transition-opacity hidden md:block"
                                                     >
                                                         <Link2 className="w-4 h-4" aria-hidden="true" />

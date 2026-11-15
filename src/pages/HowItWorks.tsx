@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/ui/TextReveal'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
+import { t, tf } from '@/i18n'
 
 const CODE_BASE = 'https://github.com/goldendevuz/savetube-android/blob/main/app/src/main/java/io/github/aedev/flow/'
 
@@ -104,12 +105,12 @@ function Rows({ rows }: { rows: { label: string; value: string; note?: string }[
 }
 
 const signals = [
-    { label: 'Dislike', value: -0.40, note: 'Pushes the video\'s topics away.' },
-    { label: 'Skip', value: -0.15, note: 'You left after 10 seconds but before 20%.' },
-    { label: 'Click', value: 0.03, note: 'Just opening a video barely counts.' },
-    { label: 'Save', value: 0.22, note: 'Download, Watch Later or a playlist.' },
-    { label: 'Full watch', value: 0.23, note: '0.15 times the share you watched, plus up to 0.08 for the minutes. A full hour-long video gives about 0.23.' },
-    { label: 'Like', value: 0.30, note: 'The strongest positive signal.' },
+    { label: t("Dislike"), value: -0.40, note: t("Pushes the video's topics away.") },
+    { label: t("Skip"), value: -0.15, note: t("You left after 10 seconds but before 20%.") },
+    { label: t("Click"), value: 0.03, note: t("Just opening a video barely counts.") },
+    { label: t("Save"), value: 0.22, note: t("Download, Watch Later or a playlist.") },
+    { label: t("Full watch"), value: 0.23, note: t("0.15 times the share you watched, plus up to 0.08 for the minutes. A full hour-long video gives about 0.23.") },
+    { label: t("Like"), value: 0.30, note: t("The strongest positive signal.") },
 ]
 
 function SignalsChart() {
@@ -124,7 +125,7 @@ function SignalsChart() {
     const sx = (v: number) => L + ((v - min) / (max - min)) * (W - L - R)
     return (
         <div ref={ref} className="relative">
-            <svg viewBox={`0 0 ${W} ${H}`} className="block w-full h-auto" role="img" aria-label="How far one action moves your profile: dislike minus 0.40, skip minus 0.15, click plus 0.03, save plus 0.22, full watch up to plus 0.23, like plus 0.30">
+            <svg viewBox={`0 0 ${W} ${H}`} className="block w-full h-auto" role="img" aria-label={t("How far one action moves your profile: dislike minus 0.40, skip minus 0.15, click plus 0.03, save plus 0.22, full watch up to plus 0.23, like plus 0.30")}>
                 {[-0.4, -0.2, 0, 0.2].map(t => (
                     <g key={t}>
                         <line x1={sx(t)} x2={sx(t)} y1={4} y2={H - 24} stroke="var(--border-subtle)" strokeDasharray={t === 0 ? undefined : '2 4'} />
@@ -160,10 +161,10 @@ function SignalsChart() {
 }
 
 const slotNames = [
-    { name: 'Morning', hours: '6 to 11' },
-    { name: 'Afternoon', hours: '12 to 17' },
-    { name: 'Evening', hours: '18 to 23' },
-    { name: 'Night', hours: '0 to 5' },
+    { name: t("Morning"), hours: '6 to 11' },
+    { name: t("Afternoon"), hours: '12 to 17' },
+    { name: t("Evening"), hours: '18 to 23' },
+    { name: t("Night"), hours: '0 to 5' },
 ]
 
 function TimeSlots() {
@@ -173,11 +174,11 @@ function TimeSlots() {
     const slot = hour >= 6 && hour <= 11 ? 0 : hour >= 12 && hour <= 17 ? 1 : hour >= 18 ? 2 : 3
     return (
         <>
-            <DemoTitle title="The eight slots" unit={`${weekend ? 'Weekend' : 'Weekday'} ${slotNames[slot].name.toLowerCase()} for you`} />
+            <DemoTitle title={t("The eight slots")} unit={tf(t("%s %s for you"), weekend ? t("Weekend") : t("Weekday"), slotNames[slot].name.toLowerCase())} />
             <div className="grid grid-cols-[auto_repeat(4,minmax(0,1fr))] gap-1.5 text-sm">
                 <span />
                 {slotNames.map(s => <span key={s.name} className="kicker px-1 pb-1">{s.name}</span>)}
-                {['Weekday', 'Weekend'].map((row, r) => (
+                {[t("Weekday"), t("Weekend")].map((row, r) => (
                     <div key={row} className="contents">
                         <span className="kicker self-center pr-2">{row}</span>
                         {slotNames.map((s, c) => {
@@ -190,7 +191,7 @@ function TimeSlots() {
                                         active ? 'border-2 border-text-primary bg-bg-primary font-semibold text-text-primary' : 'border border-border-subtle text-text-secondary'
                                     )}
                                 >
-                                    {active ? 'You are here' : ' '}
+                                    {active ? t("You are here") : ' '}
                                     <span className="block mt-1 font-mono text-[10.5px] text-text-muted">{s.hours}</span>
                                 </div>
                             )
@@ -240,17 +241,17 @@ function DecayChart() {
         if (!box) return
         const n = Math.max(0, Math.min(X, Math.round((((e.clientX - box.left) * (W / box.width)) - L) / (W - L - R) * X)))
         setHover(n)
-        show(e, `After ${n} other videos`, `Core interest ${at(coreSeries, n).toFixed(2)} · passing click ${at(whimSeries, n).toFixed(2)}`)
+        show(e, tf(t("After %s other videos"), n), tf(t("Core interest %s · passing click %s"), at(coreSeries, n).toFixed(2), at(whimSeries, n).toFixed(2)))
     }
 
     return (
         <div ref={ref} className="relative">
-            <svg viewBox={`0 0 ${W} ${H}`} className="block w-full h-auto" role="img" aria-label={`A core interest starting at 0.80 is gone after about ${coreEnd} other videos you enjoy. A passing click starting at 0.08 is gone after about ${whimEnd}.`}>
-                {[0.30, 0.10].map(t => (
-                    <g key={t}>
-                        <line x1={L} x2={W - R} y1={sy(t)} y2={sy(t)} stroke="var(--border-subtle)" strokeDasharray="2 4" />
-                        <text x={W - R} y={sy(t) - 5} textAnchor="end" fontSize={10.5} fill="var(--text-muted)">
-                            {t === 0.30 ? 'above 0.30: fades ×0.998 each time' : 'above 0.10: ×0.993, below: ×0.97'}
+            <svg viewBox={`0 0 ${W} ${H}`} className="block w-full h-auto" role="img" aria-label={tf(t("A core interest starting at 0.80 is gone after about %s other videos you enjoy. A passing click starting at 0.08 is gone after about %s."), coreEnd, whimEnd)}>
+                {[0.30, 0.10].map(level => (
+                    <g key={level}>
+                        <line x1={L} x2={W - R} y1={sy(level)} y2={sy(level)} stroke="var(--border-subtle)" strokeDasharray="2 4" />
+                        <text x={W - R} y={sy(level) - 5} textAnchor="end" fontSize={10.5} fill="var(--text-muted)">
+                            {level === 0.30 ? t("above 0.30: fades ×0.998 each time") : t("above 0.10: ×0.993, below: ×0.97")}
                         </text>
                     </g>
                 ))}
@@ -263,8 +264,8 @@ function DecayChart() {
                 ))}
                 <path d={path(coreSeries)} fill="none" stroke="var(--viz-1)" strokeWidth={2} strokeLinejoin="round" />
                 <path d={path(whimSeries)} fill="none" stroke="var(--viz-2)" strokeWidth={2} strokeLinejoin="round" />
-                <text x={sx(coreEnd) - 4} y={sy(0) - 8} textAnchor="end" fontSize={11.5} fill="var(--text-primary)">gone after ~{coreEnd}</text>
-                <text x={sx(whimEnd) + 6} y={sy(0.08) - 4} fontSize={11.5} fill="var(--text-primary)">gone after ~{whimEnd}</text>
+                <text x={sx(coreEnd) - 4} y={sy(0) - 8} textAnchor="end" fontSize={11.5} fill="var(--text-primary)">{t("gone after ~")}{coreEnd}</text>
+                <text x={sx(whimEnd) + 6} y={sy(0.08) - 4} fontSize={11.5} fill="var(--text-primary)">{t("gone after ~")}{whimEnd}</text>
                 {hover !== null && (
                     <>
                         <line x1={sx(hover)} x2={sx(hover)} y1={T} y2={H - B} stroke="var(--text-muted)" />
@@ -275,8 +276,8 @@ function DecayChart() {
                 <rect x={L} y={T} width={W - L - R} height={H - T - B} fill="transparent" onMouseMove={onMove} onMouseLeave={() => { setHover(null); hide() }} />
             </svg>
             <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-text-secondary">
-                <span className="inline-flex items-center gap-2"><i className="w-2.5 h-2.5 rounded-sm bg-[var(--viz-1)]" />Core interest, starting at 0.80</span>
-                <span className="inline-flex items-center gap-2"><i className="w-2.5 h-2.5 rounded-sm bg-[var(--viz-2)]" />Passing click, starting at 0.08</span>
+                <span className="inline-flex items-center gap-2"><i className="w-2.5 h-2.5 rounded-sm bg-[var(--viz-1)]" />{t("Core interest, starting at 0.80")}</span>
+                <span className="inline-flex items-center gap-2"><i className="w-2.5 h-2.5 rounded-sm bg-[var(--viz-2)]" />{t("Passing click, starting at 0.08")}</span>
             </div>
             {node}
         </div>
@@ -284,9 +285,9 @@ function DecayChart() {
 }
 
 const feedCases = {
-    established: { label: 'Subscriptions + history', subs: 16, related: 10, discovery: 10 },
-    new: { label: 'New to SaveTube', subs: 14, related: 12, discovery: 10 },
-    noSubs: { label: 'No subscriptions', subs: 0, related: 14, discovery: 18 },
+    established: { label: t("Subscriptions + history"), subs: 16, related: 10, discovery: 10 },
+    new: { label: t("New to SaveTube"), subs: 14, related: 12, discovery: 10 },
+    noSubs: { label: t("No subscriptions"), subs: 0, related: 14, discovery: 18 },
 }
 
 type FeedCase = keyof typeof feedCases
@@ -296,15 +297,15 @@ function FeedMix() {
     const c = feedCases[active]
     const rest = 40 - c.subs - c.related - c.discovery
     const lanes = [
-        { label: 'Subscriptions', count: c.subs, color: 'var(--viz-1)' },
-        { label: 'Related to what you finished', count: c.related, color: 'var(--viz-3)' },
-        { label: 'Searches from your interests', count: c.discovery, color: 'var(--viz-2)' },
-        { label: 'Topped up from the others', count: rest, color: 'var(--viz-neutral)' },
+        { label: t("Subscriptions"), count: c.subs, color: 'var(--viz-1)' },
+        { label: t("Related to what you finished"), count: c.related, color: 'var(--viz-3)' },
+        { label: t("Searches from your interests"), count: c.discovery, color: 'var(--viz-2)' },
+        { label: t("Topped up from the others"), count: rest, color: 'var(--viz-neutral)' },
     ]
     return (
         <>
-            <DemoTitle title="40 slots in one Home refresh" unit="Share of feed" />
-            <div className="inline-flex flex-wrap gap-1 rounded-xl border border-border-subtle p-1 mb-5" role="group" aria-label="Situation">
+            <DemoTitle title={t("40 slots in one Home refresh")} unit="Share of feed" />
+            <div className="inline-flex flex-wrap gap-1 rounded-xl border border-border-subtle p-1 mb-5" role="group" aria-label={t("Situation")}>
                 {(Object.keys(feedCases) as FeedCase[]).map(key => (
                     <button
                         key={key}
@@ -341,15 +342,14 @@ function BoredomSlider() {
     const [skips, setSkips] = useState(0)
     const boredom = Math.min(Math.max(skips / 20, 0), 0.5)
     const parts = [
-        { label: 'Fits you', value: 0.4 - boredom * 0.5, color: 'var(--viz-1)' },
-        { label: 'Fits this time of day', value: 0.4 - boredom * 0.5, color: 'var(--viz-3)' },
-        { label: 'Something new', value: 0.2 + boredom, color: 'var(--viz-2)' },
+        { label: t("Fits you"), value: 0.4 - boredom * 0.5, color: 'var(--viz-1)' },
+        { label: t("Fits this time of day"), value: 0.4 - boredom * 0.5, color: 'var(--viz-3)' },
+        { label: t("Something new"), value: 0.2 + boredom, color: 'var(--viz-2)' },
     ]
     return (
         <>
             <label htmlFor="skips" className="flex items-baseline justify-between text-sm font-semibold text-text-primary">
-                Skips in a row
-                <span className="font-mono font-normal">{skips}{skips >= 10 ? ' (maximum effect)' : ''}</span>
+                {t("Skips in a row")}<span className="font-mono font-normal">{skips}{skips >= 10 ? t(" (maximum effect)") : ''}</span>
             </label>
             <input
                 id="skips"
@@ -381,30 +381,30 @@ function BoredomSlider() {
 }
 
 const personas = [
-    { emoji: '🌱', name: 'The Initiate', text: 'Just getting started. Your profile is still forming.', rule: 'Under 15 interactions' },
-    { emoji: '🎧', name: 'The Audiophile', text: 'You use SaveTube mostly for Music. The vibe is everything.', rule: 'Music is over 40% of your topics' },
-    { emoji: '🔴', name: 'The Livewire', text: 'You love the raw energy of Livestreams and premieres.', rule: 'Mostly live and premieres' },
-    { emoji: '🦉', name: 'The Night Owl', text: 'You thrive in the dark. Most watching happens after midnight.', rule: 'Nights over 1.5× your mornings' },
-    { emoji: '🍿', name: 'The Binger', text: 'Once you start, you can\'t stop. Massive content waves.', rule: '500+ interactions, fast-paced' },
-    { emoji: '🎓', name: 'The Scholar', text: 'High-complexity content. Here to grow, not just be entertained.', rule: 'Mostly dense, complex videos' },
-    { emoji: '🤿', name: 'The Deep Diver', text: 'Long-form video essays and documentaries are your world.', rule: 'Mostly long videos' },
-    { emoji: '⚡', name: 'The Skimmer', text: 'Fast-paced, short content. Dopamine on demand.', rule: 'Short and fast-paced' },
-    { emoji: '🎯', name: 'The Specialist', text: 'Laser-focused on a few niches. You know what you like.', rule: 'A few topics far ahead of the rest' },
-    { emoji: '🧭', name: 'The Explorer', text: 'Chaotic and beautiful. A bit of everything.', rule: 'None of the above' },
+    { emoji: '🌱', name: t("The Initiate"), text: t("Just getting started. Your profile is still forming."), rule: t("Under 15 interactions") },
+    { emoji: '🎧', name: t("The Audiophile"), text: t("You use SaveTube mostly for Music. The vibe is everything."), rule: t("Music is over 40% of your topics") },
+    { emoji: '🔴', name: t("The Livewire"), text: t("You love the raw energy of Livestreams and premieres."), rule: t("Mostly live and premieres") },
+    { emoji: '🦉', name: t("The Night Owl"), text: t("You thrive in the dark. Most watching happens after midnight."), rule: t("Nights over 1.5× your mornings") },
+    { emoji: '🍿', name: t("The Binger"), text: t("Once you start, you can't stop. Massive content waves."), rule: t("500+ interactions, fast-paced") },
+    { emoji: '🎓', name: t("The Scholar"), text: t("High-complexity content. Here to grow, not just be entertained."), rule: t("Mostly dense, complex videos") },
+    { emoji: '🤿', name: t("The Deep Diver"), text: t("Long-form video essays and documentaries are your world."), rule: t("Mostly long videos") },
+    { emoji: '⚡', name: t("The Skimmer"), text: t("Fast-paced, short content. Dopamine on demand."), rule: t("Short and fast-paced") },
+    { emoji: '🎯', name: t("The Specialist"), text: t("Laser-focused on a few niches. You know what you like."), rule: t("A few topics far ahead of the rest") },
+    { emoji: '🧭', name: t("The Explorer"), text: t("Chaotic and beautiful. A bit of everything."), rule: t("None of the above") },
 ]
 
 const chapters = [
-    { id: 'signals', title: 'What teaches it' },
-    { id: 'reading', title: 'What it reads from a video' },
-    { id: 'time', title: 'It knows what time it is' },
-    { id: 'forgetting', title: 'It forgets, slowly' },
-    { id: 'feed', title: 'Where your feed comes from' },
-    { id: 'boredom', title: 'It notices when you\'re bored' },
-    { id: 'guardrails', title: 'Guardrails against the loop' },
-    { id: 'personas', title: 'Ten personas' },
-    { id: 'control', title: 'What you can see and change' },
-    { id: 'music', title: 'Music has its own brain' },
-    { id: 'privacy', title: 'What stays, and what YouTube sees' },
+    { id: 'signals', title: t("What teaches it") },
+    { id: 'reading', title: t("What it reads from a video") },
+    { id: 'time', title: t("It knows what time it is") },
+    { id: 'forgetting', title: t("It forgets, slowly") },
+    { id: 'feed', title: t("Where your feed comes from") },
+    { id: 'boredom', title: t("It notices when you're bored") },
+    { id: 'guardrails', title: t("Guardrails against the loop") },
+    { id: 'personas', title: t("Ten personas") },
+    { id: 'control', title: t("What you can see and change") },
+    { id: 'music', title: t("Music has its own brain") },
+    { id: 'privacy', title: t("What stays, and what YouTube sees") },
 ]
 
 export function HowItWorks() {
@@ -415,15 +415,13 @@ export function HowItWorks() {
             <main className="flex-1 w-full pt-32 md:pt-40 pb-24">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <FadeIn>
-                        <p className="kicker mb-5">How it works</p>
+                        <p className="kicker mb-5">{t("How it works")}</p>
                         <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.035em] leading-[0.98] mb-6">
-                            SaveTube Neuro,{' '}
-                            <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">in detail.</span>
+                            {t("SaveTube Neuro,")}{' '}
+                            <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">{t("in detail.")}</span>
                         </h1>
                         <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl">
-                            SaveTube Neuro is the recommendation engine inside SaveTube. It isn't an AI model: it keeps a list of topics
-                            and weights in one file on your phone and does plain math on them.
-                        </p>
+                            {t("SaveTube Neuro is the recommendation engine inside SaveTube. It isn't an AI model: it keeps a list of topics and weights in one file on your phone and does plain math on them.")}</p>
                     </FadeIn>
 
                     <FadeIn delay={0.1}>
@@ -443,46 +441,46 @@ export function HowItWorks() {
                         <Chapter
                             n="01"
                             id="signals"
-                            title="What teaches it"
+                            title={t("What teaches it")}
                             text={<>
-                                <p>Every action nudges your profile by a set amount. A like counts ten times as much as a click, and a dislike pushes back harder than a like pulls. Finishing a video counts more when it's a long one.</p>
-                                <p>A watch counts once you pass 20%. Leaving after 10 seconds but before 20% counts as a skip, and leaving sooner teaches nothing. Shorts train their own separate profile and move the main one at 1% strength.</p>
-                                <p>New lessons get gentler as your profile matures, down to a quarter of their strength after about 950 interactions, so one odd video can't rewrite a settled profile.</p>
+                                <p>{t("Every action nudges your profile by a set amount. A like counts ten times as much as a click, and a dislike pushes back harder than a like pulls. Finishing a video counts more when it's a long one.")}</p>
+                                <p>{t("A watch counts once you pass 20%. Leaving after 10 seconds but before 20% counts as a skip, and leaving sooner teaches nothing. Shorts train their own separate profile and move the main one at 1% strength.")}</p>
+                                <p>{t("New lessons get gentler as your profile matures, down to a quarter of their strength after about 950 interactions, so one odd video can't rewrite a settled profile.")}</p>
                             </>}
                             files={['data/recommendation/FlowNeuroEngine.kt', 'ui/screens/player/WatchSessionTracker.kt']}
                         >
-                            <DemoTitle title="How far one action moves your profile" unit="Learning rate" />
+                            <DemoTitle title={t("How far one action moves your profile")} unit="Learning rate" />
                             <SignalsChart />
                         </Chapter>
 
                         <Chapter
                             n="02"
                             id="reading"
-                            title="What it reads from a video"
+                            title={t("What it reads from a video")}
                             text={<>
-                                <p>It reads the title, channel, tags and description, weighs the words, and turns each video into a list of topics with weights between 0 and 1. Sponsor lines, people's names and channel branding are filtered out first.</p>
-                                <p>It also scores three traits: how long the video is, how fast-paced, and how dense. When it compares a video with your profile, topics make up 70% of the match and each trait 10%.</p>
+                                <p>{t("It reads the title, channel, tags and description, weighs the words, and turns each video into a list of topics with weights between 0 and 1. Sponsor lines, people's names and channel branding are filtered out first.")}</p>
+                                <p>{t("It also scores three traits: how long the video is, how fast-paced, and how dense. When it compares a video with your profile, topics make up 70% of the match and each trait 10%.")}</p>
                             </>}
                             files={['data/recommendation/NeuroTokenizer.kt', 'data/recommendation/NeuroVectorMath.kt']}
                         >
-                            <DemoTitle title="How much each part of a video counts" unit="Weight" />
+                            <DemoTitle title={t("How much each part of a video counts")} unit="Weight" />
                             <Rows rows={[
-                                { label: 'Two-word phrase from the title', value: '0.75', note: '1.2 when a single word would be ambiguous on its own.' },
-                                { label: 'Tag that also appears in the title or description', value: '0.65' },
-                                { label: 'Channel keyword', value: '0.60' },
-                                { label: 'Single word from the title', value: '0.50' },
-                                { label: 'Word from the description', value: '0.20' },
-                                { label: 'Tag that appears nowhere else', value: '0.10', note: 'Tag spam gets almost no say.' },
+                                { label: t("Two-word phrase from the title"), value: '0.75', note: t("1.2 when a single word would be ambiguous on its own.") },
+                                { label: t("Tag that also appears in the title or description"), value: '0.65' },
+                                { label: t("Channel keyword"), value: '0.60' },
+                                { label: t("Single word from the title"), value: '0.50' },
+                                { label: t("Word from the description"), value: '0.20' },
+                                { label: t("Tag that appears nowhere else"), value: '0.10', note: t("Tag spam gets almost no say.") },
                             ]} />
                         </Chapter>
 
                         <Chapter
                             n="03"
                             id="time"
-                            title="It knows what time it is"
+                            title={t("It knows what time it is")}
                             text={<>
-                                <p>Your mornings and your weekend nights aren't the same. Every action also trains one of eight time slots: weekday or weekend, crossed with morning, afternoon, evening and night.</p>
-                                <p>When it ranks videos, how well a video fits the slot you're in counts as much as how well it fits you overall.</p>
+                                <p>{t("Your mornings and your weekend nights aren't the same. Every action also trains one of eight time slots: weekday or weekend, crossed with morning, afternoon, evening and night.")}</p>
+                                <p>{t("When it ranks videos, how well a video fits the slot you're in counts as much as how well it fits you overall.")}</p>
                             </>}
                             files={['data/recommendation/NeuroModels.kt', 'data/recommendation/FlowNeuroEngine.kt']}
                         >
@@ -492,24 +490,24 @@ export function HowItWorks() {
                         <Chapter
                             n="04"
                             id="forgetting"
-                            title="It forgets, slowly"
+                            title={t("It forgets, slowly")}
                             text={<>
-                                <p>Each time you enjoy something, the topics you've stopped watching lose a little weight. Strong interests fade slowly and passing whims fade fast. Anything below 0.03 is dropped.</p>
-                                <p>It counts in videos, not days. An interest doesn't fade while you're away from the app, only when you spend your time on other things.</p>
+                                <p>{t("Each time you enjoy something, the topics you've stopped watching lose a little weight. Strong interests fade slowly and passing whims fade fast. Anything below 0.03 is dropped.")}</p>
+                                <p>{t("It counts in videos, not days. An interest doesn't fade while you're away from the app, only when you spend your time on other things.")}</p>
                             </>}
                             files={['data/recommendation/NeuroVectorMath.kt']}
                         >
-                            <DemoTitle title="How long an interest you stop watching lasts" unit="Weight · other videos you enjoy" />
+                            <DemoTitle title={t("How long an interest you stop watching lasts")} unit="Weight · other videos you enjoy" />
                             <DecayChart />
                         </Chapter>
 
                         <Chapter
                             n="05"
                             id="feed"
-                            title="Where your feed comes from"
+                            title={t("Where your feed comes from")}
                             text={<>
-                                <p>Home mixes three sources: your subscriptions, videos related to ones you finished or liked, and searches SaveTube runs for you from your interests. Up to two uploads from the last 72 hours are pinned at the top.</p>
-                                <p>Each refresh runs up to 12 searches, always including one or two that explore topics next to yours. There's no trending filler: if nothing fits, the feed stays short.</p>
+                                <p>{t("Home mixes three sources: your subscriptions, videos related to ones you finished or liked, and searches SaveTube runs for you from your interests. Up to two uploads from the last 72 hours are pinned at the top.")}</p>
+                                <p>{t("Each refresh runs up to 12 searches, always including one or two that explore topics next to yours. There's no trending filler: if nothing fits, the feed stays short.")}</p>
                             </>}
                             files={['ui/screens/home/HomeFeedMixer.kt', 'ui/screens/home/HomeFeedAssembly.kt', 'data/recommendation/NeuroDiscovery.kt']}
                         >
@@ -519,10 +517,10 @@ export function HowItWorks() {
                         <Chapter
                             n="06"
                             id="boredom"
-                            title="It notices when you're bored"
+                            title={t("It notices when you're bored")}
                             text={<>
-                                <p>Each video's score has three parts: how well it fits you, how well it fits this time of day, and how new it is. Normally that's 40%, 40% and 20%.</p>
-                                <p>Every skip in a row shifts weight toward something new, up to 70% after ten skips. Watching or liking anything resets it.</p>
+                                <p>{t("Each video's score has three parts: how well it fits you, how well it fits this time of day, and how new it is. Normally that's 40%, 40% and 20%.")}</p>
+                                <p>{t("Every skip in a row shifts weight toward something new, up to 70% after ten skips. Watching or liking anything resets it.")}</p>
                             </>}
                             files={['data/recommendation/FlowNeuroEngine.kt']}
                         >
@@ -532,26 +530,26 @@ export function HowItWorks() {
                         <Chapter
                             n="07"
                             id="guardrails"
-                            title="Guardrails against the loop"
-                            text={<p>The rules that stop the feed from repeating itself or rewarding clickbait. A multiplier like ×0.02 means the video keeps 2% of its score.</p>}
+                            title={t("Guardrails against the loop")}
+                            text={<p>{t("The rules that stop the feed from repeating itself or rewarding clickbait. A multiplier like ×0.02 means the video keeps 2% of its score.")}</p>}
                             files={['data/recommendation/NeuroScoring.kt', 'ui/screens/home/HomeFeedMixer.kt']}
                         >
                             <Rows rows={[
-                                { label: 'Finished it (over 85%)', value: '×0.02', note: 'Songs are exempt, so you can replay what you love.' },
-                                { label: 'Scrolled past it', value: 'hidden 6 h', note: 'Shown twice and still skipped: hidden for 60 hours.' },
-                                { label: 'Same channel', value: 'max 2', note: 'Per Home feed, and only one per channel in the first 20 of each list.' },
-                                { label: 'Under 1% likes at 50,000+ views', value: 'down to ×0.2', note: 'A floor against clickbait, applied after the first day.' },
-                                { label: 'Shown 5 times in 48 h, never opened', value: '×0.10' },
-                                { label: 'One topic taking over', value: '3 to 6 max', note: 'Per topic in each list. Your top 3 interests appear every refresh, and smaller ones rotate in.' },
-                                { label: '"Not interested"', value: '30 d / 14 d', note: 'Hides the video for 30 days and the channel for 14. Only "Don\'t show this channel" is permanent.' },
+                                { label: t("Finished it (over 85%)"), value: '×0.02', note: t("Songs are exempt, so you can replay what you love.") },
+                                { label: t("Scrolled past it"), value: t("hidden 6 h"), note: t("Shown twice and still skipped: hidden for 60 hours.") },
+                                { label: t("Same channel"), value: t("max 2"), note: t("Per Home feed, and only one per channel in the first 20 of each list.") },
+                                { label: t("Under 1% likes at 50,000+ views"), value: t("down to ×0.2"), note: t("A floor against clickbait, applied after the first day.") },
+                                { label: t("Shown 5 times in 48 h, never opened"), value: '×0.10' },
+                                { label: t("One topic taking over"), value: t("3 to 6 max"), note: t("Per topic in each list. Your top 3 interests appear every refresh, and smaller ones rotate in.") },
+                                { label: t("\"Not interested\""), value: '30 d / 14 d', note: t("Hides the video for 30 days and the channel for 14. Only \"Don't show this channel\" is permanent.") },
                             ]} />
                         </Chapter>
 
                         <Chapter
                             n="08"
                             id="personas"
-                            title="Ten personas"
-                            text={<p>The Your taste screen gives you one of ten labels based on how and when you watch. It checks them in this order, and only switches once the new one has held for a while, so the label doesn't flicker.</p>}
+                            title={t("Ten personas")}
+                            text={<p>{t("The Your taste screen gives you one of ten labels based on how and when you watch. It checks them in this order, and only switches once the new one has held for a while, so the label doesn't flicker.")}</p>}
                             files={['data/recommendation/FlowNeuroEngine.kt']}
                         >
                             <ul className="grid gap-2 sm:grid-cols-2">
@@ -569,29 +567,29 @@ export function HowItWorks() {
                         <Chapter
                             n="09"
                             id="control"
-                            title="What you can see and change"
-                            text={<p>Settings › Your taste shows the engine's view of you, and every control on it changes the engine directly.</p>}
+                            title={t("What you can see and change")}
+                            text={<p>{t("Settings › Your taste shows the engine's view of you, and every control on it changes the engine directly.")}</p>}
                             files={['ui/screens/settings/taste/TasteSections.kt', 'ui/screens/settings/taste/TasteViewModel.kt', 'ui/screens/home/FlowHeaderLogoIcon.kt']}
                         >
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <div>
-                                    <p className="kicker mb-3">See</p>
+                                    <p className="kicker mb-3">{t("See")}</p>
                                     <ul className="space-y-2 text-sm text-text-secondary">
-                                        <li>Your persona and profile maturity, full at 250 interactions</li>
-                                        <li>Taste shape: pacing, complexity, length, live and topic breadth, overall against right now</li>
-                                        <li>Your top 12 interests and top 10 channels</li>
-                                        <li>Your music taste and how much new music it mixes in</li>
-                                        <li>The last 5 searches it ran for you</li>
+                                        <li>{t("Your persona and profile maturity, full at 250 interactions")}</li>
+                                        <li>{t("Taste shape: pacing, complexity, length, live and topic breadth, overall against right now")}</li>
+                                        <li>{t("Your top 12 interests and top 10 channels")}</li>
+                                        <li>{t("Your music taste and how much new music it mixes in")}</li>
+                                        <li>{t("The last 5 searches it ran for you")}</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <p className="kicker mb-3">Change</p>
+                                    <p className="kicker mb-3">{t("Change")}</p>
                                     <ul className="space-y-2 text-sm text-text-secondary">
-                                        <li>Boost a topic, or block topics and channels</li>
-                                        <li>Unblock anything under Hidden from you</li>
-                                        <li>Long-press the SaveTube logo to pause learning. It turns back on after 4 hours by default.</li>
-                                        <li>Export or import your profile as a JSON file</li>
-                                        <li>Reset video or music learning to zero. Your recap stays.</li>
+                                        <li>{t("Boost a topic, or block topics and channels")}</li>
+                                        <li>{t("Unblock anything under Hidden from you")}</li>
+                                        <li>{t("Long-press the SaveTube logo to pause learning. It turns back on after 4 hours by default.")}</li>
+                                        <li>{t("Export or import your profile as a JSON file")}</li>
+                                        <li>{t("Reset video or music learning to zero. Your recap stays.")}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -600,44 +598,44 @@ export function HowItWorks() {
                         <Chapter
                             n="10"
                             id="music"
-                            title="Music has its own brain"
+                            title={t("Music has its own brain")}
                             text={<>
-                                <p>Music works the opposite way from video. It rewards replaying favourites and keeps mixes coherent instead of varied.</p>
-                                <p>It lives in its own file, and a test in the app fails the build if the two engines ever share code.</p>
+                                <p>{t("Music works the opposite way from video. It rewards replaying favourites and keeps mixes coherent instead of varied.")}</p>
+                                <p>{t("It lives in its own file, and a test in the app fails the build if the two engines ever share code.")}</p>
                             </>}
                             files={['data/recommendation/music/MusicBrainModels.kt', 'data/recommendation/music/MusicBrainRanker.kt', 'data/recommendation/music/MusicBrainMixes.kt']}
                         >
                             <Rows rows={[
-                                { label: 'A song counts', value: 'at 50%', note: 'Or when you like it. Skipping in the first 15% doesn\'t count against you.' },
-                                { label: 'Daily Mixes', value: 'from your sessions', note: 'Built from artists you actually play together, not from genre labels.' },
-                                { label: 'New artists mixed in', value: '15 · 35 · 55 · 75%', note: 'Quick Picks, Radio, Similar and Discover, in that order.' },
-                                { label: 'On Repeat and Rediscover', value: 'no network', note: 'Built entirely from what\'s on your phone.' },
+                                { label: t("A song counts"), value: 'at 50%', note: t("Or when you like it. Skipping in the first 15% doesn't count against you.") },
+                                { label: t("Daily Mixes"), value: t("from your sessions"), note: t("Built from artists you actually play together, not from genre labels.") },
+                                { label: t("New artists mixed in"), value: '15 · 35 · 55 · 75%', note: t("Quick Picks, Radio, Similar and Discover, in that order.") },
+                                { label: t("On Repeat and Rediscover"), value: t("no network"), note: t("Built entirely from what's on your phone.") },
                             ]} />
                         </Chapter>
 
                         <Chapter
                             n="11"
                             id="privacy"
-                            title="What stays, and what YouTube sees"
-                            text={<p>The exact version of "your data stays on your phone".</p>}
+                            title={t("What stays, and what YouTube sees")}
+                            text={<p>{t("The exact version of \"your data stays on your phone\".")}</p>}
                             files={['data/recommendation/NeuroStorage.kt', 'data/repository/YouTubeRepository.kt']}
                         >
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <div>
-                                    <p className="kicker mb-3">Stays on your devices</p>
+                                    <p className="kicker mb-3">{t("Stays on your devices")}</p>
                                     <ul className="space-y-2 text-sm text-text-secondary">
-                                        <li>Your video and music profiles, each a JSON file in the app's private storage</li>
-                                        <li>All scoring, penalties, blocks and personas</li>
-                                        <li>It only moves if you export it, back it up to a folder you pick, or sync with your own device over local Wi-Fi</li>
+                                        <li>{t("Your video and music profiles, each a JSON file in the app's private storage")}</li>
+                                        <li>{t("All scoring, penalties, blocks and personas")}</li>
+                                        <li>{t("It only moves if you export it, back it up to a folder you pick, or sync with your own device over local Wi-Fi")}</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <p className="kicker mb-3">Sent to YouTube to fetch videos</p>
+                                    <p className="kicker mb-3">{t("Sent to YouTube to fetch videos")}</p>
                                     <ul className="space-y-2 text-sm text-text-secondary">
-                                        <li>Short search phrases built from your interests</li>
-                                        <li>IDs of videos you finished, to find related ones</li>
-                                        <li>Your subscribed channel IDs, a few at a time</li>
-                                        <li>Blocked topics are removed from searches before they're sent</li>
+                                        <li>{t("Short search phrases built from your interests")}</li>
+                                        <li>{t("IDs of videos you finished, to find related ones")}</li>
+                                        <li>{t("Your subscribed channel IDs, a few at a time")}</li>
+                                        <li>{t("Blocked topics are removed from searches before they're sent")}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -647,14 +645,13 @@ export function HowItWorks() {
                     <FadeIn delay={0.1}>
                         <div className="mt-8 rounded-2xl border-2 border-text-primary p-8 md:p-12 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
                             <div>
-                                <p className="kicker mb-4">Open source</p>
+                                <p className="kicker mb-4">{t("Open source")}</p>
                                 <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight mb-3">
-                                    Don't take our word{' '}
-                                    <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">for it.</span>
+                                    {t("Don't take our word")}{' '}
+                                    <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">{t("for it.")}</span>
                                 </h2>
                                 <p className="text-text-secondary max-w-xl leading-relaxed">
-                                    Every rule on this page is in the source, under GPL-3.0. Read it, question it, or send a pull request.
-                                </p>
+                                    {t("Every rule on this page is in the source, under GPL-3.0. Read it, question it, or send a pull request.")}</p>
                             </div>
                             <Button
                                 href="https://github.com/goldendevuz/savetube-android/tree/main/app/src/main/java/io/github/aedev/flow/data/recommendation"
@@ -664,8 +661,7 @@ export function HowItWorks() {
                                 size="md"
                                 icon={<ArrowUpRight className="w-4 h-4" />}
                             >
-                                Read the engine's code
-                            </Button>
+                                {t("Read the engine's code")}</Button>
                         </div>
                     </FadeIn>
                 </div>

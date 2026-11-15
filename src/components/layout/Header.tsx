@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Download, Sun, Moon, ChevronDown, ArrowRight, ArrowUpRight, Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
+import { t } from '@/i18n'
 
 interface NavLinkItem {
     label: string
@@ -25,31 +27,31 @@ function useNavGroups(): NavGroup[] {
     return [
         {
             id: 'explore',
-            label: 'Explore',
+            label: t("Explore"),
             featured: {
-                kicker: 'SaveTube Neuro',
-                label: 'How it Works',
-                description: 'A recommendation engine that learns what you like on your phone, and nowhere else. See what it knows and how it builds your feed.',
+                kicker: t("SaveTube Neuro"),
+                label: t("How it Works"),
+                description: t("A recommendation engine that learns what you like on your phone, and nowhere else. See what it knows and how it builds your feed."),
                 href: '/how-it-works',
-                cta: 'See how it learns',
+                cta: t("See how it learns"),
             },
             items: [
-                { label: 'Features', description: 'Everything SaveTube can do, from SponsorBlock to song recognition.', href: '/#features' },
-                { label: 'Every Screen', description: 'Tour SaveTube on Android, Android TV and desktop.', href: '/#showcase' },
-                { label: 'FAQ', description: 'Straight answers on cost, privacy and installing.', href: '/#faq' },
+                { label: t("Features"), description: t("Everything SaveTube can do, from SponsorBlock to song recognition."), href: '/#features' },
+                { label: t("Every Screen"), description: t("Tour SaveTube on Android, Android TV and desktop."), href: '/#showcase' },
+                { label: t("FAQ"), description: t("Straight answers on cost, privacy and installing."), href: '/#faq' },
             ],
         },
         {
             id: 'community',
-            label: 'Community',
+            label: t("Community"),
             items: [
                 {
-                    label: 'GitHub',
-                    description: 'Star the source and follow development.',
+                    label: t("GitHub"),
+                    description: t("Star the source and follow development."),
                     href: 'https://github.com/goldendevuz/savetube-android',
                     external: true,
                 },
-                { label: 'About', description: 'Why SaveTube exists and who builds it.', href: '/about' },
+                { label: t("About"), description: t("Why SaveTube exists and who builds it."), href: '/about' },
             ],
         },
     ]
@@ -154,7 +156,7 @@ export function Header() {
     const themeButton = (
         <button
             onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            aria-label={theme === 'dark' ? t('Switch to light mode') : t('Switch to dark mode')}
             className="w-10 h-10 grid place-items-center text-text-secondary hover:text-text-primary hover:bg-bg-elevated rounded-xl transition-colors"
         >
             <span className="relative flex w-[18px] h-[18px] items-center justify-center">
@@ -179,12 +181,12 @@ export function Header() {
             <header className="absolute top-0 left-0 right-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between h-16 md:h-20">
-                        <Link to="/" className="flex items-center gap-2.5 group justify-self-start" aria-label="SaveTube home">
+                        <Link to="/" className="flex items-center gap-2.5 group justify-self-start" aria-label={t("SaveTube home")}>
                             <img src={`${import.meta.env.BASE_URL}savetube-icon.svg`} className="w-9 h-9 md:w-10 md:h-10 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" alt="" />
-                            <span className="font-display text-2xl md:text-[1.75rem] font-semibold tracking-[-0.03em] text-text-primary">SaveTube</span>
+                            <span className="font-display text-2xl md:text-[1.75rem] font-semibold tracking-[-0.03em] text-text-primary">{t("SaveTube")}</span>
                         </Link>
 
-                        <nav ref={navRef} aria-label="Main" className="hidden md:flex items-center gap-1">
+                        <nav ref={navRef} aria-label={t("Main")} className="hidden md:flex items-center gap-1">
                             {groups.map(group => {
                                 const isOpen = openGroup === group.id
                                 const active = isGroupActive(group)
@@ -264,6 +266,7 @@ export function Header() {
                         </nav>
 
                         <div className="hidden md:flex items-center justify-self-end gap-2">
+                            <LanguageSwitcher />
                             {themeButton}
                             <Button
                                 to="/download"
@@ -273,15 +276,15 @@ export function Header() {
                                 icon={<Download className="w-4 h-4" />}
                                 iconPosition="left"
                             >
-                                Download
-                            </Button>
+                                {t("Download")}</Button>
                         </div>
 
                         <div className="md:hidden flex items-center gap-1">
+                            <LanguageSwitcher />
                             {themeButton}
                             <button
                                 onClick={() => setIsMobileMenuOpen(true)}
-                                aria-label="Open menu"
+                                aria-label={t("Open menu")}
                                 aria-expanded={isMobileMenuOpen}
                                 aria-controls="mobile-menu"
                                 className="w-10 h-10 grid place-items-center text-text-primary rounded-xl hover:bg-bg-elevated"
@@ -308,7 +311,7 @@ export function Header() {
                             id="mobile-menu"
                             role="dialog"
                             aria-modal="true"
-                            aria-label="Menu"
+                            aria-label={t("Menu")}
                             className="fixed inset-y-0 right-0 z-[70] w-[min(20rem,86vw)] bg-bg-primary md:hidden flex flex-col shadow-[-24px_0_48px_-24px_rgba(0,0,0,0.4)]"
                             initial={{ x: '100%' }}
                             animate={{ x: 0 }}
@@ -316,10 +319,10 @@ export function Header() {
                             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <div className="flex items-center justify-between h-16 px-5">
-                                <span className="font-display text-2xl font-semibold tracking-[-0.03em]">Menu</span>
+                                <span className="font-display text-2xl font-semibold tracking-[-0.03em]">{t("Menu")}</span>
                                 <button
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    aria-label="Close menu"
+                                    aria-label={t("Close menu")}
                                     className="w-10 h-10 grid place-items-center rounded-xl hover:bg-bg-elevated"
                                 >
                                     <X className="w-6 h-6" />
@@ -357,8 +360,7 @@ export function Header() {
                                     icon={<Download className="w-4 h-4" />}
                                     iconPosition="left"
                                 >
-                                    Download
-                                </Button>
+                                    {t("Download")}</Button>
                             </div>
                         </motion.aside>
                     </>

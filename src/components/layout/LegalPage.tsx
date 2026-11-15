@@ -1,6 +1,7 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { FadeIn } from '@/components/ui/TextReveal'
+import { t } from '@/i18n'
 
 export interface LegalSection {
     id: string
@@ -9,7 +10,7 @@ export interface LegalSection {
 }
 
 export const AFFILIATION_NOTICE =
-    'SaveTube is not affiliated with, endorsed or sponsored by YouTube or Google. YouTube and YouTube Music are trademarks of Google LLC.'
+    t("SaveTube is not affiliated with, endorsed or sponsored by YouTube or Google. YouTube and YouTube Music are trademarks of Google LLC.")
 
 export function LegalPage({ kicker, title, accent, updated, intro, sections }: {
     kicker: string
@@ -31,14 +32,14 @@ export function LegalPage({ kicker, title, accent, updated, intro, sections }: {
                             {title}{' '}
                             <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">{accent}</span>
                         </h1>
-                        <p className="kicker">Last updated {updated}</p>
+                        <p className="kicker">{t("Last updated")}{' '}{updated}</p>
                         <div className="legal mt-8 max-w-[65ch] text-lg">{intro}</div>
                     </FadeIn>
 
                     <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-                        <nav aria-label="On this page" className="hidden lg:block lg:col-span-3">
+                        <nav aria-label={t("On this page")} className="hidden lg:block lg:col-span-3">
                             <div className="sticky top-12">
-                                <p className="kicker mb-3">On this page</p>
+                                <p className="kicker mb-3">{t("On this page")}</p>
                                 <ol className="space-y-2 text-sm">
                                     {sections.map(section => (
                                         <li key={section.id}>

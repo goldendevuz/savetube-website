@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Home } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { t } from '@/i18n'
 
 export function NotFound() {
     return (
@@ -24,7 +25,7 @@ export function NotFound() {
                         animate={{ y: [0, -15, 0] }}
                         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
                         src="/404SaveTube.webp" 
-                        alt="404 Illustration" 
+                        alt={t("404 Illustration")} 
                         className="w-full h-auto max-h-[45vh] md:max-h-[55vh] object-contain drop-shadow-2xl filter"
                     />
                 </motion.div>
@@ -36,16 +37,13 @@ export function NotFound() {
                     className="text-center flex flex-col items-center px-4"
                 >
                     <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-text-primary mb-4">
-                        You're off the grid.
-                    </h2>
+                        {t("You're off the grid.")}</h2>
                     <p className="text-lg md:text-xl text-text-secondary max-w-lg mx-auto mb-10 font-medium leading-relaxed">
-                        The page you are looking for doesn't exist, has been moved, or lost in the savetube.
-                    </p>
+                        {t("The page you are looking for doesn't exist, has been moved, or lost in the savetube.")}</p>
                     
                     <div className="flex flex-wrap justify-center items-center gap-4">
                         <Button to="/" variant="primary" size="lg" className="px-8 py-5 text-base" icon={<Home className="w-5 h-5" />}>
-                            Return Home
-                        </Button>
+                            {t("Return Home")}</Button>
                         <Button 
                             variant="secondary" 
                             size="lg" 
@@ -54,8 +52,7 @@ export function NotFound() {
                             iconPosition="left"
                             onClick={() => window.history.back()}
                         >
-                            Go Back
-                        </Button>
+                            {t("Go Back")}</Button>
                     </div>
                 </motion.div>
                 
