@@ -1,13 +1,14 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Github } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { t } from '@/i18n'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
 const heroScreens = [
-    { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: 'SaveTube video player', side: true },
-    { src: `${import.meta.env.BASE_URL}screenshots/Home.webp`, alt: 'SaveTube home feed', side: false },
-    { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: 'SaveTube music player', side: true },
+    { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: t("SaveTube video player"), side: true },
+    { src: `${import.meta.env.BASE_URL}screenshots/Home.webp`, alt: t("SaveTube home feed"), side: false },
+    { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: t("SaveTube music player"), side: true },
 ]
 
 export function Hero() {
@@ -27,9 +28,8 @@ export function Hero() {
                     transition={{ delay: 0.1, duration: 0.7, ease }}
                     className="text-[clamp(2.75rem,6vw,4.75rem)] font-semibold tracking-[-0.035em] leading-[0.98] text-text-primary mb-6"
                 >
-                    Watch on your terms,
-                    <br />
-                    <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">not theirs.</span>
+                    {t("Watch on your terms,")}<br />
+                    <span className="whitespace-nowrap font-serif italic font-normal tracking-[-0.01em] text-text-muted">{t("not theirs.")}</span>
                 </motion.h1>
 
                 <motion.p
@@ -38,9 +38,7 @@ export function Hero() {
                     transition={{ delay: 0.18, duration: 0.7, ease }}
                     className="text-base md:text-lg text-text-secondary max-w-xl mb-8 leading-relaxed"
                 >
-                    An open-source YouTube and YouTube Music client. No ads, no tracking,
-                    just a feed that learns on your device and nowhere else.
-                </motion.p>
+                    {t("An open-source YouTube and YouTube Music client. No ads, no tracking, just a feed that learns on your device and nowhere else.")}</motion.p>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -49,11 +47,9 @@ export function Hero() {
                     className="flex flex-wrap items-center justify-center gap-3"
                 >
                     <Button to="/download" variant="primary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
-                        Download SaveTube
-                    </Button>
+                        {t("Download SaveTube")}</Button>
                     <Button href="https://github.com/goldendevuz/savetube-desktop" variant="outline" size="md" icon={<Github className="w-4 h-4" />}>
-                        View the source
-                    </Button>
+                        {t("View the source")}</Button>
                 </motion.div>
             </div>
 

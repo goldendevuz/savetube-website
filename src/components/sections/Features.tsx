@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Section } from '@/components/layout/Section'
 import { FadeIn } from '@/components/ui/TextReveal'
 import { cn } from '@/lib/utils'
+import { t } from '@/i18n'
+import { Rich } from '@/components/ui/Rich'
 
 interface FeatureGroup {
     id: string
@@ -15,67 +16,67 @@ interface FeatureGroup {
 const groups: FeatureGroup[] = [
     {
         id: 'watch',
-        label: 'Watch',
-        lead: 'Playback without the parts you skip anyway.',
-        screen: { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: 'The SaveTube video player', caption: 'Video player', width: 575, height: 1280 },
+        label: t("Watch"),
+        lead: t("Playback without the parts you skip anyway."),
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/VideoPlayer.webp`, alt: t("The SaveTube video player"), caption: t("Video player"), width: 575, height: 1280 },
         items: [
-            { title: 'SponsorBlock & DeArrow', description: 'Skips sponsors, intros and outros, and swaps clickbait titles and thumbnails for community ones.' },
-            { title: 'Return YouTube Dislike', description: 'See the real rating, with community-sourced dislike counts.' },
-            { title: 'Background Play & PiP', description: 'Keep listening with the screen off, or float the video over other apps.' },
-            { title: 'Floating Mini Player', description: 'Shrink the video into a floating window and keep browsing SaveTube.' },
-            { title: 'Downloads', description: 'Save videos for offline viewing, including VP9 and AV1.' },
-            { title: 'Chapters & Speed', description: 'Jump between chapters, and play anywhere from 0.25× to 2×.' },
-            { title: 'Casting', description: 'Send what you\'re watching to a Chromecast or a DLNA TV.' },
-            { title: 'Subtitles', description: 'Change their size, color and background.' },
-            { title: 'Gesture Controls', description: 'Swipe for volume, brightness and seeking.' },
-            { title: 'Ambient Mode', description: 'A soft glow of the video\'s own colors around the player.' },
-            { title: 'Comment Threads', description: 'Read comments with full replies and nested threads.' },
-            { title: 'Shorts', description: 'A vertical Shorts feed with its own recommendations, kept apart from your main feed.' },
-            { title: 'Resume Playback', description: 'Pick up exactly where you left off.' },
+            { title: t("SponsorBlock & DeArrow"), description: t("Skips sponsors, intros and outros, and swaps clickbait titles and thumbnails for community ones.") },
+            { title: t("Return YouTube Dislike"), description: t("See the real rating, with community-sourced dislike counts.") },
+            { title: t("Background Play & PiP"), description: t("Keep listening with the screen off, or float the video over other apps.") },
+            { title: t("Floating Mini Player"), description: t("Shrink the video into a floating window and keep browsing SaveTube.") },
+            { title: t("Downloads"), description: t("Save videos for offline viewing, including VP9 and AV1.") },
+            { title: t("Chapters & Speed"), description: t("Jump between chapters, and play anywhere from 0.25× to 2×.") },
+            { title: t("Casting"), description: t("Send what you're watching to a Chromecast or a DLNA TV.") },
+            { title: t("Subtitles"), description: t("Change their size, color and background.") },
+            { title: t("Gesture Controls"), description: t("Swipe for volume, brightness and seeking.") },
+            { title: t("Ambient Mode"), description: t("A soft glow of the video's own colors around the player.") },
+            { title: t("Comment Threads"), description: t("Read comments with full replies and nested threads.") },
+            { title: t("Shorts"), description: t("A vertical Shorts feed with its own recommendations, kept apart from your main feed.") },
+            { title: t("Resume Playback"), description: t("Pick up exactly where you left off.") },
         ],
     },
     {
         id: 'listen',
-        label: 'Listen',
-        lead: 'A music app that happens to live inside a video app.',
-        screen: { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: 'The SaveTube music player', caption: 'Music player', width: 575, height: 1280 },
+        label: t("Listen"),
+        lead: t("A music app that happens to live inside a video app."),
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/MusicPlayer.webp`, alt: t("The SaveTube music player"), caption: t("Music player"), width: 575, height: 1280 },
         items: [
-            { title: 'Music Player', description: 'Album art, a queue you can reorder, shuffle and repeat.' },
-            { title: 'Synchronized Lyrics', description: 'Lyrics that scroll with the song as it plays.' },
-            { title: 'High-Quality Audio', description: 'High-bitrate streams straight from YouTube Music.' },
-            { title: 'Persistent Mini Player', description: 'Keep the music playing while you browse the rest of the app.' },
-            { title: 'Parametric Equalizer', description: 'Shape the sound band by band, with frequency, gain and Q.' },
-            { title: 'Song Recognition', description: 'Identify a song playing nearby and keep a searchable history.' },
-            { title: 'Local Media Library', description: 'Play the music and videos already on your phone.' },
-            { title: 'Sleep Timer', description: 'Stop playback after 5 to 120 minutes, or a time you set.' },
-            { title: 'Discord Rich Presence', description: 'Show what you\'re playing on your Discord profile.' },
+            { title: t("Music Player"), description: t("Album art, a queue you can reorder, shuffle and repeat.") },
+            { title: t("Synchronized Lyrics"), description: t("Lyrics that scroll with the song as it plays.") },
+            { title: t("High-Quality Audio"), description: t("High-bitrate streams straight from YouTube Music.") },
+            { title: t("Persistent Mini Player"), description: t("Keep the music playing while you browse the rest of the app.") },
+            { title: t("Parametric Equalizer"), description: t("Shape the sound band by band, with frequency, gain and Q.") },
+            { title: t("Song Recognition"), description: t("Identify a song playing nearby and keep a searchable history.") },
+            { title: t("Local Media Library"), description: t("Play the music and videos already on your phone.") },
+            { title: t("Sleep Timer"), description: t("Stop playback after 5 to 120 minutes, or a time you set.") },
+            { title: t("Discord Rich Presence"), description: t("Show what you're playing on your Discord profile.") },
         ],
     },
     {
         id: 'yours',
-        label: 'Yours',
-        lead: 'No account, no tracking, and it looks the way you want.',
-        screen: { src: `${import.meta.env.BASE_URL}screenshots/Library.webp`, alt: 'The SaveTube library', caption: 'Library', width: 575, height: 1280 },
+        label: t("Yours"),
+        lead: t("No account, no tracking, and it looks the way you want."),
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/Library.webp`, alt: t("The SaveTube library"), caption: t("Library"), width: 575, height: 1280 },
         items: [
-            { title: 'No Account, No Tracking', description: 'No Google sign-in, no ads, no analytics. Your data stays on your phone.' },
-            { title: 'Import & Export', description: 'Bring subscriptions and history from NewPipe, and export everything anytime.' },
-            { title: '27 Themes', description: 'Catppuccin, Dracula, Tokyo Night and more, plus Material You colors from your wallpaper.' },
-            { title: 'Custom Themes', description: 'Build your own palette when none of the 27 fits.' },
-            { title: 'SaveTube Recap', description: 'Your time per day and month, top channels and artists, told as a story.' },
-            { title: 'Verify Every Build', description: 'Check the APK\'s signing fingerprint with AppVerifier before you install.' },
+            { title: t("No Account, No Tracking"), description: t("No Google sign-in, no ads, no analytics. Your data stays on your phone.") },
+            { title: t("Import & Export"), description: t("Bring subscriptions and history from NewPipe, and export everything anytime.") },
+            { title: t("27 Themes"), description: t("Catppuccin, Dracula, Tokyo Night and more, plus Material You colors from your wallpaper.") },
+            { title: t("Custom Themes"), description: t("Build your own palette when none of the 27 fits.") },
+            { title: t("SaveTube Recap"), description: t("Your time per day and month, top channels and artists, told as a story.") },
+            { title: t("Verify Every Build"), description: t("Check the APK's signing fingerprint with AppVerifier before you install.") },
         ],
     },
     {
         id: 'everywhere',
-        label: 'Everywhere',
-        lead: 'The same SaveTube on your TV, your home screen, your computer and your browser.',
-        screen: { src: `${import.meta.env.BASE_URL}screenshots/desktop/Home.webp`, alt: 'The SaveTube desktop app', caption: 'Desktop beta', width: 1915, height: 1020, desktop: true },
+        label: t("Everywhere"),
+        lead: t("The same SaveTube on your TV, your home screen, your computer and your browser."),
+        screen: { src: `${import.meta.env.BASE_URL}screenshots/desktop/Home.webp`, alt: t("The SaveTube desktop app"), caption: t("Desktop beta"), width: 1915, height: 1020, desktop: true },
         items: [
-            { title: 'Android TV', description: 'A TV interface built for the remote, with the same private feed.' },
-            { title: 'Device Sync', description: 'Move your library, history and profile between your devices over local Wi-Fi, paired with a QR code.' },
-            { title: 'Home-Screen Widgets', description: 'Now Playing controls, and quick actions for search, downloads, history and recognition.' },
-            { title: 'Desktop Beta', description: 'Windows, macOS and Linux, written in Rust on Tauri 2. Syncs with SaveTube on your phone.' },
-            { title: 'Browser Extension', description: 'Watch in SaveTube and Download buttons on YouTube and YouTube Music, in Chromium browsers and Firefox.' },
+            { title: t("Android TV"), description: t("A TV interface built for the remote, with the same private feed.") },
+            { title: t("Device Sync"), description: t("Move your library, history and profile between your devices over local Wi-Fi, paired with a QR code.") },
+            { title: t("Home-Screen Widgets"), description: t("Now Playing controls, and quick actions for search, downloads, history and recognition.") },
+            { title: t("Desktop Beta"), description: t("Windows, macOS and Linux, written in Rust on Tauri 2. Syncs with SaveTube on your phone.") },
+            { title: t("Browser Extension"), description: t("Watch in SaveTube and Download buttons on YouTube and YouTube Music, in Chromium browsers and Firefox.") },
         ],
     },
 ]
@@ -102,19 +103,16 @@ export function Features() {
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <FadeIn>
                     <div className="mb-12 md:mb-16 max-w-3xl">
-                        <p className="kicker mb-4">02 &middot; Features</p>
+                        <p className="kicker mb-4">{t("02 · Features")}</p>
                         <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.035em] leading-[1.02] text-text-primary mb-6">
-                            Everything on your terms.
-                        </h2>
+                            {t("Everything on your terms.")}</h2>
                         <p className="text-lg text-text-secondary leading-relaxed">
-                            Watching, listening, discovering: every part of SaveTube is built around
-                            privacy, control, and playback that stays out of your way.
-                        </p>
+                            {t("Watching, listening, discovering: every part of SaveTube is built around privacy, control, and playback that stays out of your way.")}</p>
                     </div>
                 </FadeIn>
 
                 <FadeIn delay={0.05}>
-                    <div role="tablist" aria-label="Feature groups" className="flex flex-wrap gap-x-2 border-b border-border-subtle">
+                    <div role="tablist" aria-label={t("Feature groups")} className="flex flex-wrap gap-x-2 border-b border-border-subtle">
                         {groups.map((group, i) => (
                             <button
                                 key={group.id}
@@ -184,12 +182,7 @@ export function Features() {
                 ))}
 
                 <p className="mt-14 md:mt-16 pt-6 border-t border-border-subtle text-sm text-text-secondary">
-                    Recommendations have their own section{' '}
-                    <a href="#neuro-engine" className="font-semibold text-text-primary underline underline-offset-4 decoration-text-muted hover:decoration-text-primary">below</a>
-                    , and a full{' '}
-                    <Link to="/how-it-works" className="font-semibold text-text-primary underline underline-offset-4 decoration-text-muted hover:decoration-text-primary">How it works</Link>
-                    {' '}page.
-                </p>
+                    <Rich text={t("Recommendations have their own section <l0>below</l0>, and a full <l1>How it works</l1> page.")} links={['#neuro-engine', { to: '/how-it-works' }]} linkClassName="font-semibold text-text-primary underline underline-offset-4 decoration-text-muted hover:decoration-text-primary" /></p>
             </div>
         </Section>
     )
